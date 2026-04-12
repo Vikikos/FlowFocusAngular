@@ -1,7 +1,12 @@
+aside{
+    min-height: calc(100dvh - 75px);
+    
+}
+aside >div {
+    min-width: 200px;
+}
+
 .bubble-element {
-    width: 150px;
-    height: 50px;
-    border-radius: 25px;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -9,20 +14,8 @@
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-    font-weight: 500;
     box-shadow:
         0 4px 10px rgba(0, 0, 0, 0.1),
         inset 0 5px 15px -3px rgba(255, 255, 255, 0.7),
         inset 0 -5px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-.bubble-element:hover {
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow:
-        0 6px 15px rgba(0, 0, 0, 0.15),
-        inset 0 7px 18px -3px rgba(255, 255, 255, 0.8),
-        inset 0 -7px 18px -3px rgba(0, 0, 0, 0.15);
 }
