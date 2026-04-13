@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import {RouterLink} from '@angular/router';
 
 @Component({
-  selector: 'header-component',
+  selector: 'error404-component',
   imports: [RouterLink],
-  templateUrl: './header.html',
-  styleUrl: './header.css',
+  templateUrl: './error404.html',
+  styleUrl: './error404.css',
 })
-export class HeaderComponent {
+export class Error404Component {
 
 }
