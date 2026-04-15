@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../header/header';
-import { AsideMenuComponent } from '../aside-menu/aside-menu';
+import { HeaderComponent } from '../common-components/header/header';
+import { AsideMenuComponent } from '../common-components/aside-menu/aside-menu';
 
 @Component({
   selector: 'descktop',
