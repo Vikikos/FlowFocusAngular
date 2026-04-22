@@ -1,25 +1,58 @@
 <div class="d-flex flex-row">
   <aside-menu-component></aside-menu-component>
+
   <main class="w-100 p-3">
     <div class="container">
-        <div class="row">
-            <div class="col-4 d-flex justify-content-center align-items-center">
-                <button class="btn">
-                    <i class="bi bi-plus-circle fs-2"></i>
-                </button>
-            </div> 
-            <div class="col-4 d-flex justify-content-center align-items-center">
-                <button class="btn">
-                    <i class="bi bi-plus-circle fs-2"></i>
-                </button>
-            </div>
-            <div class="col-4 d-flex justify-content-center align-items-center">
-                <button class="btn">
-                    <i class="bi bi-plus-circle fs-2"></i>
-                </button>
-            </div>
+      <div class="row">
+        <div class="col-4 d-flex justify-content-center align-items-center">
+          @if (funcSpace1 === 'none' && (!addFunction || activeSpace !== 1)) {
+            <button class="btn" (click)="toggleFunction(1)">
+              <i class="bi bi-plus-circle fs-2"></i>
+            </button>
+          }
+
+          @if (addFunction && activeSpace === 1) {
+            <selct-function (functionSend)="functionSelected($event)" (close)="closeComponent(1)"></selct-function>
+          }
+
+          @if (funcSpace1 === 'pomodoro') {
+            <pomodoro (close)="closeComponent(1)"></pomodoro>
+          }
         </div>
+
+        <div class="col-4 d-flex justify-content-center align-items-center">
+          @if (funcSpace2 === 'none' && (!addFunction || activeSpace !== 2)) {
+            <button class="btn" (click)="toggleFunction(2)">
+              <i class="bi bi-plus-circle fs-2"></i>
+            </button>
+          }
+
+          @if (addFunction && activeSpace === 2) {
+            <selct-function (functionSend)="functionSelected($event)" (close)="closeComponent(2)"></selct-function>
+          }
+
+          @if (funcSpace2 === 'pomodoro') {
+            <pomodoro (close)="closeComponent(2)"></pomodoro>
+          }
+        </div>
+
+        <div class="col-4 d-flex justify-content-center align-items-center">
+          @if (funcSpace3 === 'none' && (!addFunction || activeSpace !== 3)) {
+            <button class="btn" (click)="toggleFunction(3)">
+              <i class="bi bi-plus-circle fs-2"></i>
+            </button>
+          }
+
+          @if (addFunction && activeSpace === 3) {
+            <selct-function (functionSend)="functionSelected($event)" (close)="closeComponent(3)"></selct-function>
+          }
+
+          @if (funcSpace3 === 'pomodoro') {
+            <pomodoro (close)="closeComponent(3)"></pomodoro>
+          }
+        </div>
+      </div>
     </div>
   </main>
 </div>
- 
+

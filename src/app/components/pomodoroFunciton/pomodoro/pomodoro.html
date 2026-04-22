@@ -1,11 +1,12 @@
-@if (setting) {
-  <div class="pomodoro-container" [class.break-mode]="!isWorking">
 
+@if (setting) {
+  <div class="pomodoro-container" [class.closing]="isClosing" [class.break-mode]="!isWorking">
     @if (!isEditing) {
       <div class="header-actions">
         <button class="btn-primary" (click)="toggleMenu()">
           <span>☰</span> {{ showMenu ? 'Volver' : 'Lista' }}
         </button>
+        <button class="close" (click)="sendClose()">×</button>
       </div>
     }
 

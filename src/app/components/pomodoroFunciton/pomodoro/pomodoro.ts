@@ -1,16 +1,19 @@
-import { Component,OnInit,OnDestroy, ChangeDetectorRef} from '@angular/core';
+import { Component,OnInit,OnDestroy, Output,EventEmitter, ChangeDetectorRef} from '@angular/core';
 import { PomodoroService } from '../services/pomodoroService';
 import { IPomodoro } from '../interfaces/ipomodoro';
 import { interval } from 'rxjs';
-
+import { AsideMenuComponent } from '../../common-components/aside-menu/aside-menu';
 import { DecimalPipe } from "@angular/common";
 @Component({
   selector: 'pomodoro',
-  imports: [DecimalPipe,  ],
+  imports: [DecimalPipe, AsideMenuComponent  ],
   templateUrl: './pomodoro.html',
   styleUrl: './pomodoro.css',
 })
 export class Pomodoro implements OnInit, OnDestroy {
+   @Output() close = new EventEmitter<string>();
+
+
   setting?: IPomodoro;
   allSettings: IPomodoro[] = [];
   secondLeft: number= 0;
@@ -121,17 +124,16 @@ export class Pomodoro implements OnInit, OnDestroy {
 saveSettings(newWork: string, newBreak: string, newSessions: string): void {
   if (!this.setting || !this.setting.id) return;
 
-  // Convertimos lo que escribió el usuario (minutos) a segundos para la API
   const dataToSend: IPomodoro = {
     ...this.setting,
-    work_duration: Number(newWork) * 60,   // Ejemplo: 1 min -> 60 seg
-    break_duration: Number(newBreak) * 60, // Ejemplo: 5 min -> 300 seg
+    work_duration: Number(newWork) * 60,
+    break_duration: Number(newBreak) * 60,
     total_sessions: Number(newSessions)
   };
 
   this.pomodoroService.updateSettings(this.setting.id, dataToSend).subscribe({
     next: (response) => {
-      // Guardamos la respuesta (que ya viene en segundos)
+
       this.setting = { ...dataToSend, ...response };
 
       this.isEditing = false;
@@ -139,7 +141,7 @@ saveSettings(newWork: string, newBreak: string, newSessions: string): void {
       this.currentSession = 1;
 
       this.stop();
-      this.resetTimer(); // Ahora resetTimer usará los segundos directamente
+      this.resetTimer();
       this.cdr.detectChanges();
     },
     error: (err) => console.error('Error al guardar:', err)
@@ -150,7 +152,7 @@ selectPomodoro(item: IPomodoro): void {
     this.setting = item;
     this.isWorking = true;
     this.currentSession = 1;
-    this.showMenu = false; // Cerramos el menú
+    this.showMenu = false;
     this.resetTimer();
     this.cdr.detectChanges();
   }
@@ -163,6 +165,16 @@ selectPomodoro(item: IPomodoro): void {
   ngOnDestroy():void{
     this.stop();
   }
+  isClosing = false; 
 
+  sendClose(): void {
+    this.isClosing = true;
+
+
+    setTimeout(() => {
+      this.stop();
+      this.close.emit();
+    }, 400);
+  }
 
 }
