@@ -19,6 +19,11 @@
                 </button>
             </div>
         </div>
+        <div>
+            @if (calendars$ | async; as calendars) {
+                {{ calendars[1] }}
+            }
+        </div>
     </div>
   </main>
 </div>
