@@ -21,10 +21,10 @@ export class SignupComponent {
     private authService: AuthService
   ) {
     this.userForm = this.formBuilder.group({
-      userName: [null, Validators.required],
-      email: [null, [Validators.required, Validators.email]],
-      password: [null, Validators.required],
-      password_confirmation: [null, Validators.required]
+      userName: [null, [Validators.required,Validators.maxLength(255)]],
+      email: [null, [Validators.required, Validators.email,Validators.maxLength(255)]],
+      password: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(255), Validators.pattern('(?=.*[@$!%*?&])')]],
+      password_confirmation: [null, [Validators.required,Validators.maxLength(255)]]
     }, {
       validators: [passwordMatchValidator]
     })
@@ -43,9 +43,16 @@ export class SignupComponent {
       password_confirmation: this.userForm.controls['password_confirmation'].value
     };
 
-    this.authService.signup(newser).subscribe(res => {
-      console.log(res)
-      // this.router.navigate(['/profile']);
+    this.authService.signup(newser).subscribe({
+      next: (res) => {
+        localStorage.setItem('AUTH_TOKEN', res.token);
+        localStorage.setItem('USER_NAME', res.user.userName);
+        this.router.navigate(['/profile']);
+      },
+      error: (error) => {
+        console.log(error);
+      }
+      
     })
   }
 
