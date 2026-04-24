@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { IUserRegister } from '../interfaces/user';
@@ -8,9 +8,8 @@ import { IUser } from '../interfaces/user';
   providedIn: 'root',
 })
 export class AuthService {
+  private http = inject(HttpClient);
   private endpoint = 'http://flowfocus.test/api';
-
-  constructor(private http: HttpClient) {}
 
   login(credentials: {email: string, password: string}): Observable<any> {
     return this.http.post<any>(`${this.endpoint}/login`, credentials);
