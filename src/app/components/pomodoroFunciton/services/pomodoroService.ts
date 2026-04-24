@@ -17,4 +17,11 @@ export class PomodoroService {
   updateSettings(id: number, settings: Partial<IPomodoro>): Observable<IPomodoro> {
     return this.http.put<IPomodoro>(`${this.apiUrl}/${id}`, settings);
   }
+  create(data: any): Observable<any> {
+    return this.http.post(this.apiUrl, data);
+  }
+
+  delete(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
 }
