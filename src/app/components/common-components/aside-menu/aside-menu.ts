@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
-import {RouterLink} from '@angular/router';
+import { Component, inject } from '@angular/core';
+import {Router, RouterLink} from '@angular/router';
+import { AuthService } from '../../auth/service/auth-service';
+import { NavComponent } from "../nav/nav";
 
 @Component({
   selector: 'aside-menu-component',
   imports: [
-    RouterLink
-  ],
+    RouterLink,
+    NavComponent
+],
   templateUrl: './aside-menu.html',
   styleUrl: './aside-menu.css',
 })
