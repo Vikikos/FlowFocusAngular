@@ -1,13 +1,20 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../common-components/header/header';
 import { AsideMenuComponent } from '../common-components/aside-menu/aside-menu';
+import { Service } from './service';
+import { Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
+
 import { Pomodoro } from '../pomodoroFunciton/pomodoro/pomodoro';
 import { SelctFunction } from '../common-components/selct-function/selct-function';
 @Component({
   selector: 'descktop',
   imports: [
     HeaderComponent,
-    AsideMenuComponent,SelctFunction,
+    AsideMenuComponent,
+    AsyncPipe,
+    AsideMenuComponent,
+    SelctFunction,
     Pomodoro
 
   ],
@@ -15,6 +22,7 @@ import { SelctFunction } from '../common-components/selct-function/selct-functio
   styleUrl: './descktop.css',
 })
 export class DescktopComponent {
+
   addFunction: boolean = false;
   activeSpace: number = 0;
 

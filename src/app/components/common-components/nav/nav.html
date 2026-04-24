@@ -1,0 +1,46 @@
+<ul class="nav nav-pills flex-column mb-auto ">
+    <li class="nav-item">
+        <!-- <a href="#" class="nav-link active" aria-current="page"> -->
+        <a routerLink="" class="nav-link text-black ">
+            Pomodoro
+        </a>
+    </li>
+    <li>
+        <a routerLink="" class="nav-link text-black">
+            Cronometro
+        </a>
+    </li>
+    <li>
+        <a routerLink="" class="nav-link text-black">
+            Kanban
+        </a>
+    </li>
+    <li>
+        <a routerLink="" class="nav-link text-black">
+            Notas
+        </a>
+    </li>
+    <li>
+        <a routerLink="" class="nav-link text-black">
+            Calendar
+        </a>
+    </li>
+</ul>
+<hr>
+@if(isLogged){
+<div class="dropdown">
+    <a class="d-flex align-items-center text-decoration-none dropdown-toggle text-black"
+        data-bs-toggle="dropdown">
+        <i class="bi bi-person-circle me-2 fs-2"></i>
+        <strong>{{ userName }}</strong>
+    </a>
+    <ul class="text-black dropdown-menu text-small bubble-element">
+        <li><a class="dropdown-item text-black" routerLink="">Tema</a></li>
+        <li><a class="dropdown-item text-black" routerLink="/profile">Perfil</a></li>
+        <li>
+            <hr class="dropdown-divider">
+        </li>
+        <li><a class="text-black dropdown-item " (click)="logOut()">Cerrar Sesion</a></li>
+    </ul>
+</div>
+}

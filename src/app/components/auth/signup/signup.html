@@ -1,0 +1,72 @@
+<div class="container height-100 d-flex flex-column justify-content-center align-items-center">
+    <h1 class="text-center my-3">Registrarse</h1>
+    <form 
+        class="bubble-element rounded-2 p-4 card w-35" 
+        (ngSubmit)="sendUser()"
+        [formGroup]="userForm"
+    >
+        <div class="form-group mb-3">
+            <label for="email" class="fw-bold">Email </label>
+            <input 
+                type="email" 
+                class="form-control border" 
+                id="email" 
+                placeholder="ejemplo@ejemplo.com"
+                formControlName="email"
+                [class.border-danger]="validateField('email')"
+            >
+            @if(validateField('email')){
+                <small class="form-text text-danger">El email es obligatorio y debe tener un formato correcto</small>
+            }
+        </div>
+        <div class="form-group mb-3">
+            <label for="userName" class="fw-bold">Nombre de usuario </label>
+            <input 
+                type="text" 
+                class="form-control border" 
+                formControlName="userName"
+                [class.border-danger]="validateField('userName')"
+            >
+            @if(validateField('userName')){
+                <small  class="form-text text-danger">El nombre de usuario es obligatorio</small>
+            }
+        </div>
+        <div class="form-group mb-3">
+            <label for="password" class="fw-bold">Contraseña</label>
+            <input 
+                type="password" 
+                class="form-control border"
+                formControlName="password"
+                [class.border-danger]="validateField('password')"
+            >
+            @if(validateField('password')){
+                <small  class="form-text text-danger">La contraseña es obligatorio</small>
+            }
+        </div>
+        <div class="form-group mb-3">
+            <label for="password_confirmation" class="fw-bold">Confirme la contraseña</label>
+            <input 
+                type="password" 
+                class="form-control border"
+                formControlName="password_confirmation"
+                [class.border-danger]="passwordsDoNotMatch()"
+            >
+            @if(passwordsDoNotMatch()){
+                <small class="form-text text-danger">La contraseña no coincide</small>
+            }
+        </div>
+        <div class="form-group form-check mb-4 mx-4">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Confirmo que FlowFocus trate mis datos</label>
+        </div>
+        <button 
+            type="submit" 
+            class="btn btn-primary mb-4 mx-4"
+            [disabled]="userForm.invalid"
+        >
+            Registrarse
+        </button>
+    </form>
+</div>
+
+
