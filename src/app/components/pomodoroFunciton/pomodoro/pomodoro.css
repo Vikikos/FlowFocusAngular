@@ -1,0 +1,174 @@
+*{
+  margin: 0;
+  font-weight: 100;
+  color: rgb(51, 51, 51);
+}
+.pomodoro-container{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  padding-bottom: 30px;
+  height: 500px;
+  width: 400px;
+  animation: entradaSuave 0.3s ease-out forwards;
+  /* From https://css.glass */
+background: rgba(255, 255, 255, 0.14);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(3.7px);
+-webkit-backdrop-filter: blur(3.7px);
+border: 1px solid rgb(255, 255, 255);
+}
+p{margin: 0;}
+.title-pomodor{
+ font-size: 2rem;
+  font-weight: 100;
+
+}
+h1{
+  font-size: 3rem;
+  font-weight: 100;
+  letter-spacing: -3px;
+  color: rgb(76, 76, 76);
+}
+main{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  align-items: center;
+
+}
+.session-info{
+ color: rgb(31, 31, 31);
+ font-size: 0.85rem;
+ font-weight: 100;
+}
+.timer-display{
+  height: 100px;
+  font-size: 4rem;
+  font-weight: 100;
+  color: rgb(100, 100, 100);
+}
+.controls{
+  display: flex;
+  gap: 15px;
+}
+.btn-primary, .btn-save{
+  padding: 10px;
+  background: rgba(235, 235, 235, 0.263);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.7px);
+  -webkit-backdrop-filter: blur(3.7px);
+  border: 1px solid rgb(255, 255, 255);
+  font-weight: 100;
+
+  transition: backgorund-color 0.3s ease ,border 0.3s ease;
+}
+.btn-primary:hover{
+  background: rgba(0, 0, 0, 0.075);
+  border: 1px solid rgba(0, 0, 0, 0.344);
+}
+.edit-form{
+  margin-top:40px ;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  h3{
+    font-size: 35px;
+  }
+
+}
+.form-group
+{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  input{
+    background: rgba(235, 235, 235, 0.263);
+    border-radius: 5px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.7px);
+    -webkit-backdrop-filter: blur(3.7px);
+    border: 1px solid rgb(255, 255, 255);
+  }
+  label{
+    font-weight: 300;
+    margin-bottom: 5px;
+  }
+}
+.menu-icon{
+  border: 0;
+  background-color: rgba(240, 248, 255, 0);
+}
+.name-item:hover{
+  cursor: pointer;
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap:275px;
+  justify-content: flex-end;
+  margin-bottom: -20px;
+  margin-top: 10px;
+
+}
+.pomodoro-list-overlay{
+
+  hr{
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+}
+.list-container{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+main{
+  background-image: url(/img/bg.png);
+  background-size: cover;
+}
+@keyframes entradaSuave {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.close{
+  background-color: rgba(240, 248, 255, 0);
+  border: 0;
+  font-weight: 300px;
+  font-size: 20px;
+}
+.pomodoro-container.closing {
+  animation: desaparecer 0.4s ease-in forwards;
+}
+@keyframes desaparecer {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.5); }
+}
+
+.close {
+  background: transparent;
+  border: none;
+  font-size: 30px;
+  color: var(--text-soft);
+  cursor: pointer;
+  padding: 5px;
+  line-height: 1;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.close:hover {
+  color: var(--work-color);
+  transform: rotate(90deg);
+}

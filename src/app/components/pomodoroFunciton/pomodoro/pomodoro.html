@@ -1,0 +1,81 @@
+
+@if (setting) {
+  <div class="pomodoro-container" [class.closing]="isClosing" [class.break-mode]="!isWorking">
+    @if (!isEditing) {
+      <div class="header-actions">
+        <button class="btn-primary" (click)="toggleMenu()">
+          <span>☰</span> {{ showMenu ? 'Volver' : 'Lista' }}
+        </button>
+        <button class="close" (click)="sendClose()">×</button>
+      </div>
+    }
+
+    @if (showMenu && !isEditing) {
+      <div class="pomodoro-list-overlay">
+        <h3>Seleccionar pomodoro</h3>
+        <hr>
+        <div class="list-container">
+          @for (item of allSettings; track item.id) {
+            <div class="list-item"
+                 [class.active]="item.id === setting.id"
+                 (click)="selectPomodoro(item)">
+              <span class="name-item">{{ item.predetermined }}</span>
+
+            </div>
+          }
+        </div>
+      </div>
+    }
+
+    @if (!showMenu && !isEditing) {
+      <h1   > {{ setting.predetermined }}</h1>
+      <h1>{{ isWorking ? 'Concentración' : 'Descanso' }}</h1>
+      <p class="session-info"> Sesión {{currentSession}}  de {{setting.total_sessions}}</p>
+
+      <div class="timer-display">
+        {{ Math.floor(secondLeft / 60) | number:'2.0' }}:{{ (secondLeft % 60) | number:'2.0' }}
+      </div>
+
+      <div class="controls">
+        <button class="btn-primary" (click)="toggle()">
+          {{ isRunning ? 'Pausar' : 'Empezar' }}
+        </button>
+        <button class="btn-primary" (click)="resetTimer()">
+          Reiniciar
+        </button>
+        <button class="btn-primary" (click)="toggleEdit()">Editar</button>
+      </div>
+    }
+
+    @if (isEditing) {
+      <div class="edit-form">
+        <h3>Configuración</h3>
+
+        <div class="form-group">
+          <label>Minutos Trabajo</label>
+          <input type="number" [value]="setting.work_duration / 60" #workInput>
+        </div>
+
+        <div class="form-group">
+          <label>Minutos Descanso</label>
+          <input type="number" [value]="setting.break_duration / 60" #breakInput>
+        </div>
+
+        <div class="form-group">
+          <label>Sesiones Totales</label>
+          <input type="number" [value]="setting.total_sessions" #sessionsInput>
+        </div>
+
+        <div class="controls">
+          <button class="btn-primary" (click)="saveSettings(workInput.value, breakInput.value, sessionsInput.value)">
+            Guardar Cambios
+          </button>
+          <button class="btn-primary" (click)="toggleEdit()">Cancelar</button>
+        </div>
+      </div>
+    }
+
+  </div>
+} @else {
+  <div class="loading">Cargando configuración...</div>
+}

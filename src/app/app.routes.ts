@@ -32,10 +32,16 @@ export const routes: Routes = [
         title: 'Perfil'
     },
     {
+        path: 'pomodoro', 
+        loadComponent: () =>
+            import('./components/pomodoroFunciton/pomodoro/pomodoro')
+                .then(m => m.Pomodoro),
+        title: 'Pomodoro'},
+    {
         path: '**',
         loadComponent: () =>
             import('./components/error404/error404')
                 .then(m => m.Error404Component),
         title: 'Error 404'
     }
-];
+]
