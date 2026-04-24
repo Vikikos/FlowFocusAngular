@@ -4,6 +4,7 @@ import { isLoggedGuard } from './guards/is-logged-guard';
 export const routes: Routes = [
     {
         path: '',
+        canActivate: [isLoggedGuard],
         loadComponent: () =>
             import('./components/descktop/descktop')
                 .then(m => m.DescktopComponent),
