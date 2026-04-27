@@ -1,24 +1,55 @@
-<form class="bubble-element rounded-2 p-4">
-    <h2>Nuevo Cronometro</h2>
+<form 
+    class="bubble-element rounded-2 p-4" 
+    [formGroup]="chronometerForm"
+    (ngSubmit)="addChronometer()"
+>
+    <h2 class="mb-4">Nuevo Cronometro</h2>
     <div class="form-group mb-3">
-        <label for="name">Nombre </label>
-        <input type="name" class="form-control" placeholder="ejemplo@ejemplo.com" name="email">
-        @if(validateField('email')){
-                <small class="form-text text-danger">El email es obligatorio y debe tener un formato correcto</small>
-            }
+        <label for="name" class="form-label fw-bold">Nombre </label>
+        <input 
+            type="name" 
+            class="form-control" 
+            placeholder="Cronometro Examen PAU" 
+            name="name"
+            formControlName="name"
+        >
+        @if(validateField('name')){
+            <small class="form-text text-danger">El nombre es obligatorio</small>
+        }
     </div>
     <div class="form-group mb-3">
-        <label for="duration">Duracion </label>
-        <input type="duration" class="form-control" placeholder="ejemplo@ejemplo.com" name="email">
-        @if(validateField('email')){
-                <small class="form-text text-danger">El email es obligatorio y debe tener un formato correcto</small>
-            }
+        <label for="duration" class="form-label fw-bold">Duracion </label>
+        <input 
+            type="time" 
+            class="form-control" 
+            placeholder="hh:mm" 
+            name="duration"
+            formControlName="duration"
+            step="1"
+        >
+        @if(validateField('duration')){
+            <small class="form-text text-danger">La duración es obligatorio y minimo debe ser 1 segundo</small>
+        }
     </div>
-    <div class="form-group mb-3">
-        <label for="direction">Sentido </label>
-        <input type="direction" class="form-control" placeholder="ejemplo@ejemplo.com" name="email">
-        @if(validateField('email')){
-                <small class="form-text text-danger">El email es obligatorio y debe tener un formato correcto</small>
-            }
+    <div class="form-group mb-5">
+        <label for="direction" class="form-label fw-bold">Sentido </label>
+        <select class="form-select" name="direction" formControlName="direction">
+            <option selected >Selecciona la Direccion</option>
+            <option value="count_up">Cuenta Ascendente</option>
+            <option value="count_down">Cuenta Descendente</option>
+        </select>
+        @if(validateField('direction')){
+            <small class="form-text text-danger">Debes seleccionar una opcion valida</small>
+        }
     </div>
+    <div>
+        <button
+            type="submit" 
+            class="btn btn-primary mb-4 w-100 "
+            [disabled]="chronometerForm.invalid"
+        >
+            Añadir Cronometro
+        </button>
+    </div>
+    
 </form>

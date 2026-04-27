@@ -1,6 +1,5 @@
 aside{
-    min-height: calc(100dvh - 75px);
-  background: transparent;
+  min-height: calc(100dvh - 75px);
 }
 aside > * {
     min-width: 200px;
