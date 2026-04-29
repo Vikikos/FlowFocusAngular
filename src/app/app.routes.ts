@@ -34,10 +34,21 @@ export const routes: Routes = [
     },
     {
         path: 'pomodoro', 
+        canActivate: [isLoggedGuard],
         loadComponent: () =>
             import('./components/pomodoroFunciton/pomodoro/pomodoro')
                 .then(m => m.Pomodoro),
-        title: 'Pomodoro'},
+        title: 'Pomodoro'
+    },
+    {
+        path: 'chronometer',
+        canActivate: [isLoggedGuard],
+        loadComponent: () =>
+            import('./components/chronometer/chronometer')
+            .then(m => m.Chronometer)
+        ,
+        title: 'Chronometer'
+    },
     {
         path: '**',
         loadComponent: () =>

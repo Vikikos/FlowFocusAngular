@@ -1,0 +1,23 @@
+<div class="d-flex flex-row">
+    <aside-menu-component></aside-menu-component>
+    <main class="w-100 p-4 p-lg-5">
+        <h1>Cronometros</h1>
+        <div class="container">
+            <div class="row">
+            <div class="col-12 col-lg-6">
+                @if(chronometers$ | async; as chronometers){
+                     @for (chronometer of chronometers; track $index) {
+                        <detail-chronometer [idChoronometer]="chronometer.id!"></detail-chronometer>
+                    }
+                } @else {
+                    <div>No tienes cronometros guardados</div>
+                }
+            </div>
+            <div class="col-12 col-lg-6">
+                <add-chronometer (added)="addChronometer()"></add-chronometer>
+            </div>
+        </div>
+        </div>
+        
+    </main>
+</div>
