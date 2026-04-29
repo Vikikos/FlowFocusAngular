@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
 import { Pomodoro } from '../pomodoroFunciton/pomodoro/pomodoro';
+import { DetailChronometer } from '../chronometer/detail-chronometer/detail-chronometer';
 import { SelctFunction } from '../common-components/selct-function/selct-function';
 @Component({
   selector: 'descktop',
@@ -15,8 +16,8 @@ import { SelctFunction } from '../common-components/selct-function/selct-functio
     AsyncPipe,
     AsideMenuComponent,
     SelctFunction,
-    Pomodoro
-
+    Pomodoro,
+    DetailChronometer
   ],
   templateUrl: './descktop.html',
   styleUrl: './descktop.css',

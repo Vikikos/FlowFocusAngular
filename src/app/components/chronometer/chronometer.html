@@ -5,13 +5,16 @@
         <div class="container">
             <div class="row">
             <div class="col-12 col-lg-6">
-                <div class="p-3 border bg-light">
-                    <detail-chronometer></detail-chronometer>
-                </div>
+                @if(chronometers$ | async; as chronometers){
+                     @for (chronometer of chronometers; track $index) {
+                        <detail-chronometer [idChoronometer]="chronometer.id!"></detail-chronometer>
+                    }
+                } @else {
+                    <div>No tienes cronometros guardados</div>
+                }
             </div>
-
             <div class="col-12 col-lg-6">
-                <add-chronometer></add-chronometer>
+                <add-chronometer (added)="addChronometer()"></add-chronometer>
             </div>
         </div>
         </div>

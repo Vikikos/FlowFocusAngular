@@ -18,6 +18,9 @@
           @if (funcSpace1 === 'pomodoro') {
             <pomodoro (close)="closeComponent(1)"></pomodoro>
           }
+          @if (funcSpace1 === 'chronometer') {
+            <detail-chronometer (close)="closeComponent(1)"></detail-chronometer>
+          }
         </div>
 
         <div class="col-4 d-flex justify-content-center align-items-center">

@@ -18,20 +18,6 @@
         }
     </div>
     <div class="form-group mb-3">
-        <label for="duration" class="form-label fw-bold">Duracion </label>
-        <input 
-            type="time" 
-            class="form-control" 
-            placeholder="hh:mm" 
-            name="duration"
-            formControlName="duration"
-            step="1"
-        >
-        @if(validateField('duration')){
-            <small class="form-text text-danger">La duración es obligatorio y minimo debe ser 1 segundo</small>
-        }
-    </div>
-    <div class="form-group mb-5">
         <label for="direction" class="form-label fw-bold">Sentido </label>
         <select class="form-select" name="direction" formControlName="direction">
             <option selected >Selecciona la Direccion</option>
@@ -40,6 +26,23 @@
         </select>
         @if(validateField('direction')){
             <small class="form-text text-danger">Debes seleccionar una opcion valida</small>
+        }
+    </div>
+    <div class="form-group mb-5">
+        <label for="duration" class="form-label fw-bold">Duracion </label>
+        <input 
+            type="time" 
+            class="form-control" 
+            placeholder="hh:mm:ss" 
+            name="duration"
+            formControlName="duration"
+            step="1"
+        >
+        @if(validateField('duration')){
+            <small class="form-text text-danger">La duración es obligatorio y minimo debe ser 1 segundo</small>
+        }
+        @if(countUpMessage()){
+            <small class="form-text">La duración en cuentas ascendentes es siempre 0</small>
         }
     </div>
     <div>
