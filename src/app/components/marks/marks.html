@@ -1,0 +1,25 @@
+<div class="d-flex flex-row">
+  <aside-menu-component></aside-menu-component>
+  <main class="w-100 p-3">
+    <h1>titulo de la herramienta</h1>
+    <div class="lista-notas">
+      @for (nota of listaNotas; track nota.id) {
+        <div class="nota-card">
+          <p>{{nota.title}}</p>
+          <p>{{ nota.content }}</p>
+          <p>{{ nota.created_at | date: 'short' }}</p>
+        </div>
+      } @empty {
+        <p>No hay notas</p>
+      }
+    </div>
+  </main>
+</div>
+
+<div class="editor">
+  <h2 ></h2>
+  <textarea [(ngModel)]="textoLibre" placeholder="Escribe tu nota..."></textarea>
+  <button (click)="guardarNuevaNota()">Guardar Nota</button>
+</div>
+
+<hr/>

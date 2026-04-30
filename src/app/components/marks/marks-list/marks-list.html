@@ -1,0 +1,24 @@
+<!-- <div class="d-flex flex-row">
+  <aside-menu-component></aside-menu-component>
+  <main class="w-100 p-3">
+    <h1>Notas</h1>
+    <div class="lista-notas">
+      @for (mark of marks; track mark.id) {
+        <div class="nota-card">
+          <h3>{{ mark.title }}</h3>
+          <p>{{ mark.content }}</p>
+          <button [routerLink]="['/marks/edit',mark.id]">Editar</button>
+          <p>Creado el: {{ mark.created_at | date: 'short' }}</p>
+        </div>
+      } @empty {
+        <p>No hay notas</p>
+      }
+      <br />
+      <div class="editor">
+        <label>Título</label>
+        <br>
+        <input type="text" [ngModel()]="title">
+      </div>
+    </div>
+  </main>
+</div> -->

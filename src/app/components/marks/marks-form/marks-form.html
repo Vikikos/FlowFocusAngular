@@ -1,0 +1,9 @@
+<div class="form-container">
+  <label>Título de la nota:</label>
+  <input type="text" [(ngModel)]="title" placeholder="{marks.title}">
+
+  <label>Contenido:</label>
+  <textarea [(ngModel)]="text" placeholder="Empieza a escribir"></textarea>
+
+  <button (click)="guardar()">Guardar Nota</button>
+</div>
