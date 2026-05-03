@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { IChronometer } from '../interfaces/chronometer';
@@ -11,7 +11,8 @@ export class ChronometerService {
   private endpoint = 'http://flowfocus.test/api/chronometers';
 
   getChronometers(): Observable<IChronometer[]> {
-    return this.http.get<any>(this.endpoint)
+    const headers = this.generateHeaders();
+    return this.http.get<any>(this.endpoint,{headers})
     .pipe(
       map(res => res.data as IChronometer[]),
       catchError(error => {
@@ -21,7 +22,8 @@ export class ChronometerService {
   }
 
   getChronometer(id: number): Observable<IChronometer> {
-    return this.http.get<any>(`${this.endpoint}/${id}`)
+    const headers = this.generateHeaders();
+    return this.http.get<any>(`${this.endpoint}/${id}`,{headers})
     .pipe(
       map(res => res.data as IChronometer),
       catchError(error => {
@@ -31,11 +33,39 @@ export class ChronometerService {
   }
 
   addChronometer(chronometer: IChronometer): Observable<any> {
-    return this.http.post<any>(this.endpoint, chronometer)
+    const headers = this.generateHeaders();
+    return this.http.post<any>(this.endpoint, chronometer,{headers})
     .pipe(
       catchError(error => {
         return throwError(() => new Error(error.error?.message || 'Error del servidor'))
       })
     )
+  }
+
+  updateChronometer(id: number,chronometerData: IChronometer): Observable<any> {
+    const headers = this.generateHeaders();
+    return this.http.put<any>(`${this.endpoint}/${id}`, chronometerData, {headers})
+    .pipe(
+      catchError(error => {
+        return throwError(() => new Error(error.error?.message || 'Error del servidor'))
+      })
+    )
+  }
+
+  deleteChronometer(id: number) {
+    const headers = this.generateHeaders();
+    return this.http.delete<IChronometer>(`${this.endpoint}/${id}`,{headers})
+    .pipe(
+      catchError(error => {
+        return throwError(() => new Error(error.error?.message || 'Error del servidor'))
+      })
+    )
+  }
+
+  generateHeaders(): HttpHeaders {
+    const token = localStorage.getItem('AUTH_TOKEN');
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
   }
 }

@@ -1,9 +1,18 @@
 <form 
-    class="bubble-element rounded-2 p-4 my-2" 
+    class="bubble-element rounded-2 p-4" 
     [formGroup]="chronometerForm"
     (ngSubmit)="addChronometer()"
 >
-    <h2 class="mb-4">Nuevo Cronometro</h2>
+    <div class="mb-4 d-flex flex-row align-items-center justify-content-between">
+        <h2>Editar Cronometro</h2>
+        <button 
+            class="bg-transparent border-0 p-0" 
+            (click)="closeDialog()"
+        >
+            <i class="bi bi-x-circle fs-3" []></i>
+        </button>
+    </div>
+    
     <div class="form-group mb-3">
         <label for="name" class="form-label fw-bold">Nombre </label>
         <input 
