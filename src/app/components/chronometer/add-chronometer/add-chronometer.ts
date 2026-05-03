@@ -1,6 +1,6 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { optionsValidator } from './validators';
+import { optionsValidator } from '../validators/validators';
 import { ChronometerService } from '../service/chronometer-service';
 import { IChronometer } from '../interfaces/chronometer';
 

@@ -20,7 +20,7 @@
     height: 200px;
     background-color: #fff;
     position: relative;
-    padding: 15px 15px 0 15px;
+    margin: 15px 15px 0 15px;
 }
 
 .banner-image {
@@ -28,7 +28,7 @@
     height: 100%;
     /* Imagen de ondas abstractas similar a la de tu diseño */
     /* light-banner.png */
-    background-image: url('/light-banner.png');
+    background-image: url('/img/fondo-perso.png');
     background-size: cover;
     background-position: center;
 }

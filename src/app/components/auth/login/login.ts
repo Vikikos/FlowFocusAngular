@@ -7,7 +7,7 @@ import { AuthService } from '../service/auth-service';
   selector: 'login-component',
   imports: [RouterLink,FormsModule],
   templateUrl: './login.html',
-  styleUrl: './login.css',
+  styleUrls: ['./login.css','../../../../styles.css'],
 })
 export class LoginComponent {
   private authService = inject(AuthService);
