@@ -55,6 +55,15 @@ export const routes: Routes = [
         title: 'Chronometer'
     },
     {
+        path: 'calendar',
+        canActivate: [isLoggedGuard],
+        loadComponent: () =>
+            import('./components/calendar/calendar')
+            .then(m => m.Calendar)
+        ,
+        title: 'Chronometer'
+    },
+    {
         path: '**',
         loadComponent: () =>
             import('./components/error404/error404')
