@@ -1,0 +1,41 @@
+<div class="d-flex flex-row">
+    <aside-menu-component></aside-menu-component>
+    <main class="w-100 p-3">
+        <div class="manager-container">
+          <div class="header-manager">
+            <h2>Mis Pomodoros</h2>
+            <button class="btn-add" (click)="toggleAddForm()">
+              {{ showAddForm ? 'Cancelar' : '+ Añadir Nuevo' }}
+            </button>
+          </div>
+
+          @if (showAddForm) {
+            <div class="add-form card">
+              <input type="text" [(ngModel)]="newPomodoro.predetermined" placeholder="Nombre (ej: Estudio)">
+              <div class="inputs-row">
+                <input type="number" [(ngModel)]="newPomodoro.work_duration" placeholder="Trabajo (min)">
+                <input type="number" [(ngModel)]="newPomodoro.break_duration" placeholder="Descanso (min)">
+                <input type="number" [(ngModel)]="newPomodoro.total_sessions" placeholder="Sesiones">
+              </div>
+              <button class="btn-save" (click)="createPomodoro()">Guardar en la Nube</button>
+            </div>
+          }
+
+          <div class="pomodoro-grid">
+            @for (item of allSettings; track item.id) {
+              <div class="pomodoro-item card">
+                <div class="info">
+                  <strong>{{ item.predetermined }}</strong>
+                  <p>{{ item.work_duration / 60 }} min / {{ item.break_duration / 60 }} min</p>
+                </div>
+                <div class="actions">
+                  <button class="btn-delete" (click)="deletePomodoro(item.id)">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+    </main>
+</div>

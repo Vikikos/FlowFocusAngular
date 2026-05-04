@@ -1,5 +1,9 @@
 import { Routes } from '@angular/router';
+import { DescktopComponent } from './components/descktop/descktop';
+import { Error404Component } from './components/error404/error404';
+import { Pomodoro } from './components/pomodoroFunciton/pomodoro/pomodoro';
 import { isLoggedGuard } from './guards/is-logged-guard';
+import { PomodoroManager } from './components/pomodoroFunciton/pomodoro-manager/pomodoro-manager';
 
 export const routes: Routes = [
     {
@@ -33,11 +37,12 @@ export const routes: Routes = [
         title: 'Perfil'
     },
     {
-        path: 'pomodoro', 
+        
+        path: 'pomodoro',
         canActivate: [isLoggedGuard],
         loadComponent: () =>
-            import('./components/pomodoroFunciton/pomodoro/pomodoro')
-                .then(m => m.Pomodoro),
+            import('./components/pomodoroFunciton/pomodoro-manager/pomodoro-manager')
+                .then(m => m.PomodoroManager),
         title: 'Pomodoro'
     },
     {

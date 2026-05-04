@@ -11,7 +11,7 @@ import { DecimalPipe } from "@angular/common";
   styleUrl: './pomodoro.css',
 })
 export class Pomodoro implements OnInit, OnDestroy {
-   @Output() close = new EventEmitter<string>();
+  @Output() close = new EventEmitter<string>();
 
 
   setting?: IPomodoro;
@@ -165,7 +165,7 @@ selectPomodoro(item: IPomodoro): void {
   ngOnDestroy():void{
     this.stop();
   }
-  isClosing = false; 
+  isClosing = false;
 
   sendClose(): void {
     this.isClosing = true;
