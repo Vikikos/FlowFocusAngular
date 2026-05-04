@@ -23,7 +23,7 @@ export class SignupComponent {
     this.userForm = this.formBuilder.group({
       userName: [null, [Validators.required,Validators.maxLength(255)]],
       email: [null, [Validators.required, Validators.email,Validators.maxLength(255)]],
-      password: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(255), Validators.pattern('(?=.*[@$!%*?&])')]],
+      password: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(255)]],
       password_confirmation: [null, [Validators.required,Validators.maxLength(255)]]
     }, {
       validators: [passwordMatchValidator]
@@ -52,7 +52,7 @@ export class SignupComponent {
       error: (error) => {
         console.log(error);
       }
-      
+
     })
   }
 
@@ -64,7 +64,7 @@ export class SignupComponent {
   }
   passwordsDoNotMatch(): boolean {
     return (
-      this.userForm.hasError('passwordMismatch') && 
+      this.userForm.hasError('passwordMismatch') &&
       this.userForm.get('password_confirmation')?.touched === true
     );
   }
