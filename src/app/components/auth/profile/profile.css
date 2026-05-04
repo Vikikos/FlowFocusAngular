@@ -28,7 +28,7 @@
     height: 100%;
     /* Imagen de ondas abstractas similar a la de tu diseño */
     /* light-banner.png */
-    background-image: url('/img/fondo-perso.png');
+    background-image: url('/img/bg.jpeg');
     background-size: cover;
     background-position: center;
 }
