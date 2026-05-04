@@ -7,7 +7,7 @@ import { NavComponent } from '../nav/nav';
   selector: 'header-component',
   imports: [RouterLink, NavComponent],
   templateUrl: './header.html',
-  styleUrl: './header.css',
+  styleUrls: ['./header.css', '../../../../styles.css'],
 })
 export class HeaderComponent {
 

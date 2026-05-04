@@ -1,0 +1,58 @@
+<form 
+    class="bubble-element rounded-2 p-4 my-2" 
+    [formGroup]="chronometerForm"
+    (ngSubmit)="addChronometer()"
+>
+    <h2 class="mb-4">Nuevo Cronometro</h2>
+    <div class="form-group mb-3">
+        <label for="name" class="form-label fw-bold">Nombre </label>
+        <input 
+            type="name" 
+            class="form-control" 
+            placeholder="Cronometro Examen PAU" 
+            name="name"
+            formControlName="name"
+        >
+        @if(validateField('name')){
+            <small class="form-text text-danger">El nombre es obligatorio</small>
+        }
+    </div>
+    <div class="form-group mb-3">
+        <label for="direction" class="form-label fw-bold">Sentido </label>
+        <select class="form-select" name="direction" formControlName="direction">
+            <option selected >Selecciona la Direccion</option>
+            <option value="count_up">Cuenta Ascendente</option>
+            <option value="count_down">Cuenta Descendente</option>
+        </select>
+        @if(validateField('direction')){
+            <small class="form-text text-danger">Debes seleccionar una opcion valida</small>
+        }
+    </div>
+    <div class="form-group mb-5">
+        <label for="duration" class="form-label fw-bold">Duracion </label>
+        <input 
+            type="time" 
+            class="form-control" 
+            placeholder="hh:mm:ss" 
+            name="duration"
+            formControlName="duration"
+            step="1"
+        >
+        @if(validateField('duration')){
+            <small class="form-text text-danger">La duración es obligatorio y minimo debe ser 1 segundo</small>
+        }
+        @if(countUpMessage()){
+            <small class="form-text">La duración en cuentas ascendentes es siempre 0</small>
+        }
+    </div>
+    <div>
+        <button
+            type="submit" 
+            class="btn btn-primary mb-4 w-100 "
+            [disabled]="chronometerForm.invalid"
+        >
+            Añadir Cronometro
+        </button>
+    </div>
+    
+</form>

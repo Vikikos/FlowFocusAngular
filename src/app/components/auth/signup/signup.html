@@ -1,10 +1,10 @@
 <div class="container height-100 d-flex flex-column justify-content-center align-items-center">
-    <h1 class="text-center my-3">Registrarse</h1>
     <form 
-        class="bubble-element rounded-2 p-4 card w-35" 
+        class="bubble-element rounded-2 p-4 card w-35 " 
         (ngSubmit)="sendUser()"
         [formGroup]="userForm"
     >
+        <h1 class="text-center my-3">Registrarse</h1>
         <div class="form-group mb-3">
             <label for="email" class="fw-bold">Email </label>
             <input 

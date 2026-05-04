@@ -37,11 +37,23 @@ export const routes: Routes = [
         title: 'Perfil'
     },
     {
+        
         path: 'pomodoro',
+        canActivate: [isLoggedGuard],
         loadComponent: () =>
             import('./components/pomodoroFunciton/pomodoro-manager/pomodoro-manager')
                 .then(m => m.PomodoroManager),
-        title: 'Pomodoro'},
+        title: 'Pomodoro'
+    },
+    {
+        path: 'chronometer',
+        canActivate: [isLoggedGuard],
+        loadComponent: () =>
+            import('./components/chronometer/chronometer')
+            .then(m => m.Chronometer)
+        ,
+        title: 'Chronometer'
+    },
     {
         path: '**',
         loadComponent: () =>

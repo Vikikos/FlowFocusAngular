@@ -1,0 +1,34 @@
+<div class="py-2">
+  <div class="bubble-element rounded-2 py-2 px-3">
+    @if(chronometer$ | async; as chronometer){
+    <div class="border-bottom fw-bold d-flex flex-row justify-content-between align-items-center">
+      <h3 class="fs-5">{{ chronometer.name }}</h3>
+      <div>
+        <button class="bg-transparent border-0" (click)="editChronometer()">
+          <i class="bi bi-pencil-square fs-4"></i>
+        </button>
+        <button class="bg-transparent border-0" (click)="deleteChronometer()">
+          <i class="bi bi-trash fs-4"></i>
+        </button>
+      </div> 
+    </div>
+    }
+    <div class="fs-1 text-center">
+      {{ tiempoDisplay() }}
+    </div>
+    <div class="d-flex justify-content-center">
+      @if (!corriendo()) {
+        <button class="btn iniciar" (click)="iniciar()">
+          <i class="bi bi-play-circle-fill fs-2"></i>
+        </button>
+      } @else {
+        <button class="btn" (click)="pausar()">
+          <i class="bi bi-pause-circle-fill fs-2"></i>
+        </button>
+      }
+      <button class="btn" (click)="reiniciar()">
+        <i class="bi bi-stop-circle fs-2"></i>
+      </button>
+    </div>
+  </div>
+</div>
