@@ -27,7 +27,9 @@ export class Calendar {
     this.getCalendars();
   }
 
-  addCalendar() {}
+  addCalendar() {
+    this.getCalendars();
+  }
 
   getCalendars() {
     this.calendars$ = this.calendarService.getCalendars();

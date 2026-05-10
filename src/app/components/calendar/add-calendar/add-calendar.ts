@@ -17,14 +17,20 @@ export class AddCalendar {
 
   calendarForm: FormGroup = this.formBuilder.group({
     name: [null,[Validators.required]],
-    view: ['Selecciona un tipo de vista',[Validators.required,optionsValidator(['year','month','week','day'])]]
+    view: ['Selecciona un tipo de vista',[Validators.required,optionsValidator(['multiMonthYear','dayGridMonth','timeGridWeek','timeGridDay'])]]
   });
 
   addCalendar() {
     const formValue: ICalendar = {
       name: this.calendarForm.controls['name'].value,
-      view: this.calendarForm.controls['view'].value
+      view_calendar: this.calendarForm.controls['view'].value
     };
+    this.calendarService.addCalendar(formValue).subscribe({
+      next: () => {
+        this.added.emit();
+      },
+      error: (error) => console.error(error)
+    });
   }
 
   validateField(field: string): boolean {

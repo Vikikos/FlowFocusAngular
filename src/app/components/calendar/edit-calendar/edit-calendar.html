@@ -1,7 +1,7 @@
 <form 
     class="bubble-element rounded-2 p-4 my-2" 
     [formGroup]="calendarForm"
-    (ngSubmit)="addCalendar()"
+    (ngSubmit)="editCalendar()"
 >
     <h2 class="mb-4">Nuevo Calendario</h2>
     <div class="form-group mb-3">
@@ -18,15 +18,15 @@
         }
     </div>
     <div class="form-group mb-3">
-        <label for="view" class="form-label fw-bold">Vista </label>
-        <select class="form-select" name="view" formControlName="view">
+        <label for="view_calendar" class="form-label fw-bold">Vista </label>
+        <select class="form-select" name="view_calendar" formControlName="view_calendar">
             <option selected>Selecciona la Vista</option>
             <option value="multiMonthYear">Vista Año</option>
             <option value="dayGridMonth">Vista Mes</option>
             <option value="timeGridWeek">Vista Semana</option>
             <option value="timeGridDay">Vista Dia</option>
         </select>
-        @if(validateField('view')){
+        @if(validateField('view_calendar')){
             <small class="form-text text-danger">Debes seleccionar una opcion valida</small>
         }
     </div>
@@ -41,3 +41,4 @@
     </div>
     
 </form>
+

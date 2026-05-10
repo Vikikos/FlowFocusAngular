@@ -1,1 +1,45 @@
-<p>detail-calendar works!</p>
+<div class="d-flex flex-row">
+    <aside-menu-component></aside-menu-component>
+    <main class="w-100 px-4 px-lg-5">
+        <div class="mt-2">
+            <a routerLink="/calendar" class="nav-link text-primary">
+                <i class="bi bi-arrow-90deg-left"></i>
+                Volver
+            </a>
+        </div>
+        @if(calendar()){
+            <div>
+                <h1>{{ calendar()?.name }}</h1>
+            </div>
+            <div class="row">
+
+                <div class="col-8">
+
+                    <div class="bubble-element rounded-2 p-2">
+
+                        @if(calendarOptions){
+                        <full-calendar [options]="calendarOptions" [events]="events()"></full-calendar>
+                        } @else {
+                        <div>Cargando calendario...</div>
+                        }
+
+                    </div>
+                </div>
+                <div class="col-4">
+                    @if(events().length > 0) {
+                        <detail-event 
+                            [idCalendar]="calendar()?.id!" 
+                            [idEvent]="idEvent()"
+                            (updated)="getEvents()"
+                            (deleted)="getEvents()"
+                        ></detail-event>
+                    }
+                    
+                </div>
+
+            </div>
+        } @else {
+            <div>Cargando calendario...</div>
+        }
+    </main>
+</div>

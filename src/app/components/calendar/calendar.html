@@ -5,12 +5,17 @@
             <div class="row">
             <div class="col-12 col-lg-6">
                 @if(calendars$ | async; as calendars){
-                     @for (chronometer of calendars; track $index) {
-                        <card-calendar></card-calendar>
-                        <!-- <detail-chronometer (deleted)="getChronometers()" (updated)="getChronometers()" [idChoronometer]="chronometer.id!"></detail-chronometer> -->
+                    @for(calendar of calendars; track $index){
+                        <card-calendar 
+                            [idCalendar]="calendar.id!"
+                            (deleted)="getCalendars()"
+                            (updated)="getCalendars()"
+                        ></card-calendar>
+                    } @empty {
+                        <div>No tienes Calendarios</div>
                     }
                 } @else {
-                    <div>No tienes calendarios guardados</div>
+                    <div>Cargando Calendarios</div>
                 }
             </div>
             <div class="col-12 col-lg-6">

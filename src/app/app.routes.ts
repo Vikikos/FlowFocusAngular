@@ -61,7 +61,16 @@ export const routes: Routes = [
             import('./components/calendar/calendar')
             .then(m => m.Calendar)
         ,
-        title: 'Chronometer'
+        title: 'Calendar'
+    },
+    {
+        path: 'calendar/:id',
+        canActivate: [isLoggedGuard],
+        loadComponent: () =>
+            import('./components/calendar/detail-calendar/detail-calendar/detail-calendar')
+            .then(m => m.DetailCalendar)
+        ,
+        title: 'Calendar'
     },
     {
         path: '**',
