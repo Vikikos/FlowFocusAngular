@@ -1,0 +1,29 @@
+:host ::ng-deep .fc .fc-daygrid-day-number {
+  font-family: 'Inter', sans-serif; 
+  font-size: 1.1rem;               
+  font-weight: 600;                
+  color: #000000;            
+  padding: 8px;                    
+  text-decoration: none !important;
+}
+
+:host ::ng-deep .fc .fc-col-header-cell-cushion {
+  color: #000000;             
+  font-weight: 700;           
+  text-transform: uppercase;  
+  font-size: 0.85rem;        
+  letter-spacing: 1px;        
+  text-decoration: none !important;
+}
+
+:host ::ng-deep .fc {
+    backdrop-filter: blur(50px);
+}
+
+:host ::ng-deep .fc .fc-day-today {
+  background-color: #ffffff !important;
+}
+
+main{
+  margin: 0 auto;
+}
