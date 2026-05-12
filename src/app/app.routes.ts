@@ -73,6 +73,15 @@ export const routes: Routes = [
         title: 'Calendar'
     },
     {
+        path: 'notes',
+        canActivate: [isLoggedGuard],
+        loadComponent: () =>
+            import('./components/note/note')
+            .then(m => m.Note)
+        ,
+        title: 'Note'
+    },
+    {
         path: '**',
         loadComponent: () =>
             import('./components/error404/error404')
