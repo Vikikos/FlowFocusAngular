@@ -19,9 +19,8 @@ import { AsyncPipe } from '@angular/common';
 })
 export class Chronometer {
   private chronometerService = inject(ChronometerService);
-  loading: boolean = false;
 
-  chronometers!:IChronometer[];
+  chronometers$!: Observable<IChronometer[]>;
 
   ngOnInit() {
     this.getChronometers();
@@ -32,10 +31,6 @@ export class Chronometer {
   }
 
   getChronometers() {
-    this.chronometerService.getChronometers().subscribe({
-      next: (res) => {
-        this.chronometers = res;
-      }
-    });
+    this.chronometers$ = this.chronometerService.getChronometers();
   }
 }
