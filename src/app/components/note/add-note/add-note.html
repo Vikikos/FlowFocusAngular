@@ -1,0 +1,44 @@
+<form 
+    class="bubble-element rounded-2 p-4 " 
+    [formGroup]="noteForm"
+    (ngSubmit)="addNote()"
+>
+    <div class="form-group mb-3">
+        <label for="title" class="form-label fw-bold">Titulo </label>
+        <input 
+            type="title" 
+            class="form-control" 
+            placeholder="Titulo de la nota" 
+            name="title"
+            formControlName="title"
+        >
+        @if(validateField('title')){
+            <small class="form-text text-danger">El titulo es obligatorio</small>
+        }
+    </div>
+    <div class="form-group mb-3">
+        <textarea 
+            class="form-control" 
+            id="content" 
+            name="content"
+            formControlName="content"
+            rows="6"
+            placeholder="Escribe aqui el contenido de la nota..."
+        ></textarea>
+        
+        @if(validateField('content')){
+            <small class="form-text text-danger">El contenido es obligatorio</small>
+        }
+    </div>
+
+    <div>
+        <button
+            type="submit" 
+            class="btn btn-primary w-100 "
+            [disabled]="noteForm.invalid"
+        >
+            Añadir Nota
+        </button>
+    </div>
+    
+</form>
