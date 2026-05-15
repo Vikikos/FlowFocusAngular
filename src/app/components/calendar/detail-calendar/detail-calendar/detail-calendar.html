@@ -1,7 +1,5 @@
-<div class="d-flex flex-row">
-    <aside-menu-component></aside-menu-component>
-    <main class="w-100 px-4 px-lg-5">
-        <div class="mt-2">
+
+        <div >
             <a routerLink="/calendar" class="nav-link text-primary">
                 <i class="bi bi-arrow-90deg-left"></i>
                 Volver
@@ -33,6 +31,10 @@
                             (updated)="getEvents()"
                             (deleted)="getEvents()"
                         ></detail-event>
+                    } @else {
+                        <div class="bubble-element rounded-2 p-4">
+                            No hay eventos, haga click en un dia para añadir un nuevo evento
+                        </div>
                     }
                     
                 </div>
@@ -41,5 +43,3 @@
         } @else {
             <div>Cargando calendario...</div>
         }
-    </main>
-</div>

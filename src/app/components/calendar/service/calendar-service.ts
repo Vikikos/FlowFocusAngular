@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { ICalendar, IEvent } from '../interfaces/calendar';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -11,20 +11,25 @@ export class CalendarService {
   private readonly endpoint = 'http://flowfocus.test/api';
   private readonly endpointCalendar = 'http://flowfocus.test/api/calendars';
 
-  getCalendars(): Observable<ICalendar[]> {
-    const headers = this.generateHeaders();
-    return this.http.get<any>(this.endpointCalendar, { headers })
-      .pipe(
-        map(res => res.data as ICalendar[]),
+  private calendarsSubject = new BehaviorSubject<ICalendar[]>([]);
+  calendars$ = this.calendarsSubject.asObservable();
+
+  getCalendars() {
+    this.http.get<any>(this.endpointCalendar, { headers: this.generateHeaders() })
+     .subscribe({
+      next: (result) => {
+        this.calendarsSubject.next(result.data);
+      },
+      error: () => {
         catchError(error => {
           return throwError(() => new Error(error.error?.message || 'Error del servidor'))
         })
-      )
+      }
+    })
   }
 
   getEvents(idCalendar: number | string): Observable<any[]> {
-    const headers = this.generateHeaders();
-    return this.http.get<any>(`${this.endpointCalendar}/${idCalendar}/timeblocks`, { headers })
+    return this.http.get<any>(`${this.endpointCalendar}/${idCalendar}/timeblocks`, { headers: this.generateHeaders() })
       .pipe(
         map(res => res.data as any[]),
         catchError(error => {
@@ -34,8 +39,7 @@ export class CalendarService {
   }
 
   getCalendar(id: number | string): Observable<ICalendar> {
-    const headers = this.generateHeaders();
-    return this.http.get<any>(`${this.endpointCalendar}/${id}`, { headers })
+    return this.http.get<any>(`${this.endpointCalendar}/${id}`, { headers: this.generateHeaders() })
       .pipe(
         map(res => res.data as ICalendar),
         catchError(error => {
@@ -45,8 +49,7 @@ export class CalendarService {
   }
 
   getEvent(id: number | string, idCalendar: number | string): Observable<IEvent> {
-    const headers = this.generateHeaders();
-    return this.http.get<any>(`${this.endpointCalendar}/${idCalendar}/timeblocks/${id}`, { headers })
+    return this.http.get<any>(`${this.endpointCalendar}/${idCalendar}/timeblocks/${id}`, { headers: this.generateHeaders() })
       .pipe(
         map(res => res.data as IEvent),
         catchError(error => {
@@ -56,8 +59,7 @@ export class CalendarService {
   }
 
   addCalendar(calendar: ICalendar): Observable<ICalendar> {
-    const headers = this.generateHeaders();
-    return this.http.post<any>(this.endpointCalendar, calendar, { headers })
+    return this.http.post<any>(this.endpointCalendar, calendar, { headers: this.generateHeaders() })
       .pipe(
         catchError(error => {
           return throwError(() => new Error(error.error?.message || 'Error del servidor'))
@@ -66,8 +68,7 @@ export class CalendarService {
   }
 
   addEvent(timeblock: IEvent, idCalendar: number | string): Observable<IEvent> {
-    const headers = this.generateHeaders();
-    return this.http.post<any>(`${this.endpointCalendar}/${idCalendar}/timeblocks`, timeblock, { headers })
+    return this.http.post<any>(`${this.endpointCalendar}/${idCalendar}/timeblocks`, timeblock, { headers: this.generateHeaders() })
       .pipe(
         catchError(error => {
           return throwError(() => new Error(error.error?.message || 'Error del servidor'))
@@ -76,8 +77,7 @@ export class CalendarService {
   }
 
   updateCalendar(id:  number | string, calendarData: ICalendar): Observable<ICalendar> {
-    const headers = this.generateHeaders();
-    return this.http.put<any>(`${this.endpointCalendar}/${id}`, calendarData, { headers })
+    return this.http.put<any>(`${this.endpointCalendar}/${id}`, calendarData, { headers: this.generateHeaders() })
       .pipe(
         map(res => res.data as ICalendar),
         catchError(error => {
@@ -87,8 +87,7 @@ export class CalendarService {
   }
 
   updateEvent(event: IEvent,idEvent: number | string, idCalendar:  number | string): Observable<IEvent> {
-    const headers = this.generateHeaders();
-    return this.http.put<any>(`${this.endpointCalendar}/${idCalendar}/timeblocks/${idEvent}`, event,{headers})
+    return this.http.put<any>(`${this.endpointCalendar}/${idCalendar}/timeblocks/${idEvent}`, event, { headers: this.generateHeaders() })
      .pipe(
       map(res => res.data as IEvent),
         catchError(error => {
@@ -98,8 +97,7 @@ export class CalendarService {
   }
 
   deleteCalendar(id: number | string): Observable<any> {
-    const headers = this.generateHeaders();
-    return this.http.delete<any>(`${this.endpointCalendar}/${id}`, { headers })
+    return this.http.delete<any>(`${this.endpointCalendar}/${id}`, { headers: this.generateHeaders() })
       .pipe(
         catchError(error => {
           return throwError(() => new Error(error.error?.message || 'Error del servidor'))
@@ -108,8 +106,7 @@ export class CalendarService {
   }
 
   deleteEvent(idEvent: number | string, idCalendar: number | string): Observable<any> {
-    const headers = this.generateHeaders();
-    return this.http.delete<any>(`${this.endpointCalendar}/${idCalendar}/timeblocks/${idEvent}`, {headers})
+    return this.http.delete<any>(`${this.endpointCalendar}/${idCalendar}/timeblocks/${idEvent}`, { headers: this.generateHeaders() })
       .pipe(
         catchError(error => {
           return throwError(() => new Error(error.error?.message || 'Error del servidor'))
