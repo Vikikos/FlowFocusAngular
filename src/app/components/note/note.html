@@ -2,27 +2,29 @@
     <aside-menu-component></aside-menu-component>
     <main class="w-100 p-3 p-lg-5">
         <div class="container">
-            <h1>Notas</h1>
-            <div class="row">
+            <div class="d-flex flex-row justify-content-between align-items-center">
+                <h1>Notas</h1>
+                <form class="form">
+                    <div class="form-group">
+                        <div class="">
+                            <input type="text" [(ngModel)]="filterSearch" class="form-control" name="filterDesc"
+                                id="filterDesc" placeholder="Buscar Nota..." />
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="row ">
                 <div class="col-12 col-md-6 col-xl-4 py-3">
                     <add-note (added)="getNotes()"></add-note>
                 </div>
-                @if(notes$ | async; as notes) {
-                    @for(note of notes; track $index) {
-                        <div class="col-12 col-md-6 col-xl-4 py-3">
-                            <card-note
-                                [idNote]="note.id!"
-                                (deleted)="getNotes()"
-                            ></card-note>
-                        </div>
-                    }@empty {
-                        <div class="col-12 col-md-6 col-xl-4 py-3">
-                            <div class="bubble-element rounded-2 p-4">No tienes notas</div>
-                        </div>
-                    }
-                } @else {
+                @for(note of ((notes$ | async) ?? []) | noteFilter: filterSearch; track note.id) {
                     <div class="col-12 col-md-6 col-xl-4 py-3">
-                        <div class="bubble-element rounded-2 p-4">Cargando notas...</div>
+                        <card-note [idNote]="note.id!" (deleted)="getNotes()"></card-note>
+                    </div>
+                }@empty {
+                    <div class="col-12 col-md-6 col-xl-4 py-3">
+                        <div class="bubble-element rounded-2 p-4">No tienes notas</div>
                     </div>
                 }
             </div>

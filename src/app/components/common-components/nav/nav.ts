@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../../auth/service/auth-service';
 import { Router, RouterLink } from '@angular/router';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @Component({
   selector: 'nav-componet',
-  imports: [RouterLink],
+  imports: [RouterLink,MatTooltipModule],
   templateUrl: './nav.html',
   styleUrl: './nav.css',
 })

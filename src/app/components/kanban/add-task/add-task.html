@@ -1,0 +1,67 @@
+<form 
+    class="bubble-element rounded-2 p-4 my-2" 
+    [formGroup]="taskForm"
+    (ngSubmit)="addTask()"
+>
+    <div class="mb-4 d-flex flex-row align-items-center justify-content-between">
+        <h1>Crear Tarea</h1>
+        <button 
+            class="bg-transparent border-0 p-0" 
+            (click)="closeDialog()"
+        >
+            <i class="bi bi-x-circle fs-3" []></i>
+        </button>
+    </div>
+    <div class="form-group mb-3">
+        <label for="name" class="form-label fw-bold">Nombre </label>
+        <input 
+            type="name" 
+            class="form-control" 
+            placeholder="Cronometro Examen PAU" 
+            name="name"
+            formControlName="name"
+        >
+        @if(validateField('name')){
+            <small class="form-text text-danger">El nombre es obligatorio</small>
+        }
+    </div>
+    <div class="form-group mb-3">
+        <label for="descripcion" class="form-label fw-bold">Descripcion</label>
+        <textarea 
+            class="form-control" 
+            id="description" 
+            name="description"
+            formControlName="description"
+            rows="6"
+            placeholder="Descripcion de la tarea..."
+        ></textarea>
+        
+        @if(validateField('description')){
+            <small class="form-text text-danger">La descripcion es obligatoria</small>
+        }
+    </div>
+    <div class="form-group mb-5">
+        <label for="expiration_date" class="form-label fw-bold">Fecha fin </label>
+        <input 
+            type="date" 
+            class="form-control" 
+            placeholder="hh:mm:ss" 
+            name="expiration_date"
+            formControlName="expiration_date"
+            step="1"
+        >
+        @if(validateField('expiration_date')){
+            <small class="form-text text-danger">La fecha fin es obligatoria</small>
+        }
+    </div>
+    <div>
+        <button
+            type="submit" 
+            class="btn btn-primary mb-4 w-100 "
+            [disabled]="taskForm.invalid"
+        >
+            Añadir Tarea
+        </button>
+    </div>
+    
+</form>

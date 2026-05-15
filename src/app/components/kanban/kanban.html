@@ -1,0 +1,83 @@
+<div class="d-flex flex-row">
+    <aside-menu-component></aside-menu-component>
+    <main class="w-100 p-2 p-md-3 p-lg-5">
+
+            <div class="container-fluid h-100">
+                <div class="row gx-2 h-100" cdkDropListGroup>
+                    <div class="col-4">
+                        <div class="bubble-element rounded-2 p-3 h-100">
+                            <h3 class="border-bottom">Nuevo</h3>
+                            <div cdkDropList [cdkDropListData]="newTasks" (cdkDropListDropped)="drop($event, 'new')" class="task-list">
+                                <div class="bubble-element rounded-2 mb-2 bg-white-blur">
+                                    <button class="btn w-100 p-2" (click)="addTask()">
+                                        <i class="bi bi-plus-circle fs-3"></i>
+                                    </button>
+                                </div>
+                                @for(task of newTasks; track task.id) {
+                                    <div class="bubble-element rounded-2 p-2 mb-2 bg-white-blur" cdkDrag>
+                                        <div class="d-flex flex-row justify-content-between align-items-center">
+                                            <a class="nav-link" (click)="showtask(task.id)">
+                                                {{ task.name }}
+                                            </a>
+                                            <button class="btn fs-5 d-none d-md-block" cdkDragHandle>
+                                                <i class="bi bi-arrows-move"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                } @empty {
+                                    <div class="p-2 my-3 text-muted border-dashed">Suelte aquí</div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="bubble-element rounded-2 p-3 h-100">
+                            <h3 class="border-bottom">En Progreso</h3>
+                            <div cdkDropList [cdkDropListData]="progressTasks"
+                                (cdkDropListDropped)="drop($event, 'progress')" class="task-list">
+
+                                @for(task of progressTasks; track task.id) {
+                                    <div class="bubble-element rounded-2 p-2 mb-2 bg-white-blur" cdkDrag>
+                                        <div class="d-flex flex-row justify-content-between align-items-center">
+                                            <a class="nav-link" (click)="showtask(task.id)">
+                                                {{ task.name }}
+                                            </a>
+                                            <button class="btn fs-5 d-none d-md-block" cdkDragHandle>
+                                                <i class="bi bi-arrows-move"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                } @empty {
+                                    <div class="p-2 my-3 text-muted border-dashed">Suelte aquí</div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="bubble-element rounded-2 p-3 h-100">
+                            <h3 class="border-bottom">Hecho</h3>
+                            <div cdkDropList [cdkDropListData]="doneTasks" (cdkDropListDropped)="drop($event, 'done')"
+                                class="task-list">
+
+                                @for(task of doneTasks; track task.id) {
+                                    <div class="bubble-element rounded-2 p-2 mb-2 bg-white-blur" cdkDrag>
+                                        <div class="d-flex flex-row justify-content-between align-items-center">
+                                            <a class="nav-link" (click)="showtask(task.id)">
+                                                {{ task.name }}
+                                            </a>
+                                            <button class="btn fs-5 d-none d-md-block  " cdkDragHandle>
+                                                <i class="bi bi-arrows-move"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                } @empty {
+                                    <div class="p-2 my-3 text-muted border-dashed">Suelte aquí</div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </main>
+</div>

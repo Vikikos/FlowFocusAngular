@@ -18,19 +18,16 @@ import { AsyncPipe } from '@angular/common';
   styleUrl: './chronometer.css',
 })
 export class Chronometer {
-  private chronometerService = inject(ChronometerService);
-
   chronometers$!: Observable<IChronometer[]>;
+
+  private chronometerService = inject(ChronometerService);
 
   ngOnInit() {
     this.getChronometers();
   }
 
-  addChronometer() {
-    this.getChronometers();
-  }
-
   getChronometers() {
-    this.chronometers$ = this.chronometerService.getChronometers();
+    this.chronometers$ = this.chronometerService.chronometers$;
+    this.chronometerService.getChronometers()
   }
 }

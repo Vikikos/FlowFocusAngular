@@ -19,3 +19,20 @@ body{
     background-image: url(/img/bg.png);
     background-size: cover;
 }
+
+.mat-mdc-tooltip .mdc-tooltip__surface {
+  background-color: rgba(33, 37, 41, 0.9) !important; /* Un gris muy oscuro casi negro */
+  backdrop-filter: blur(4px); /* Efecto cristal */
+  color: #ffffff !important;
+  border-radius: 5px !important;
+  padding: 8px 12px !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* main{
+  height: 100dvh;
+  overflow: scroll;
+} */

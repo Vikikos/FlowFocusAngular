@@ -82,6 +82,15 @@ export const routes: Routes = [
         title: 'Note'
     },
     {
+        path: 'kanban',
+        canActivate: [isLoggedGuard],
+        loadComponent: () =>
+            import('./components/kanban/kanban')
+            .then(m => m.Kanban)
+        ,
+        title: 'Kanban'
+    },
+    {
         path: '**',
         loadComponent: () =>
             import('./components/error404/error404')
