@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import {RouterLink} from '@angular/router';
 import { AuthService } from '../../auth/service/auth-service';
 import { NavComponent } from '../nav/nav';
@@ -19,6 +19,12 @@ export class HeaderComponent {
   ngOnInit() {
     this.isLogged =  this.authService.isLogged();
     this.userName = this.isLogged ? localStorage.getItem('USER_NAME')! : ''
+  }
+
+  @Output() logout: EventEmitter<void> = new EventEmitter<void>();
+
+  logOut() {
+    this.logout.emit();
   }
 
 }

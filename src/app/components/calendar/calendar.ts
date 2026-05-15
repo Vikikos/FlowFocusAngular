@@ -32,6 +32,7 @@ export class Calendar {
   }
 
   getCalendars() {
-    this.calendars$ = this.calendarService.getCalendars();
+    this.calendars$ = this.calendarService.calendars$;
+    this.calendarService.getCalendars();
   }
 }

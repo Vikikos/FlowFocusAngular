@@ -48,9 +48,13 @@ export class DetailCalendar {
   getEvents() {
     this.calendarService.getEvents(this.idCalendar).subscribe({
       next: (data) =>{
-        this.events.set([]);
-        this.events.set(data);
-        this.idEvent.set(data[0].id);
+        
+        if(data.length > 0){
+          this.events.set([]);
+          this.events.set(data); 
+          this.idEvent.set(data[0].id);
+        }
+       
       },
       error: (error) => console.log(error)
     })
