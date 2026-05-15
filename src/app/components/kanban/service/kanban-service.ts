@@ -1,54 +1,55 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { INote } from '../interfaces/note';
+import { IKanbanTask } from '../interfaces/ikanban-task';
 import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class NoteService {
+export class KanbanService {
   private http = inject(HttpClient);
-  private endpoint = 'http://flowfocus.test/api/marks';
+  private endpoint = 'http://flowfocus.test/api';
 
-  private notesSubject = new BehaviorSubject<INote[]>([]);
-  notes$ = this.notesSubject.asObservable();
+  private tasksSubject = new BehaviorSubject<IKanbanTask[]>([]);
+  tasks$ = this.tasksSubject.asObservable();
 
-  getNotes() {
-    this.http.get<any>(this.endpoint, { headers: this.generateHeaders() })
+  getKanban(){
+    this.http.get<any>(`${this.endpoint}/kanban`, { headers: this.generateHeaders() })
     .subscribe({
       next: (result) => {
-        this.notesSubject.next(result.data);
+        this.tasksSubject.next(result.data);
       },
       error: () => {
         catchError(error => {
           return throwError(() => new Error(error.error?.message || 'Error del servidor'))
         })
       }
-    })
+    });
   }
 
-  getNote(id: number): Observable<INote> {
-    return this.http.get<any>(`${this.endpoint}/${id}` , { headers: this.generateHeaders() })
-      .pipe(
-        map(res => res.data as INote),
+  getTask(idTask: number): Observable<IKanbanTask> {
+    return this.http.get<any>(`${this.endpoint}/tasks/${idTask}`, { headers: this.generateHeaders() })
+    .pipe(
+        map(res => res.data as IKanbanTask),
         catchError(error => {
           return throwError(() => new Error(error.error?.message || 'Error del servidor'))
         })
       )
   }
 
-  addNote(note: INote): Observable<INote> {
-    return this.http.post<any>(this.endpoint, note, { headers: this.generateHeaders() })
-      .pipe(
+  addtask(task: IKanbanTask): Observable<IKanbanTask> {
+    return this.http.post<any>(`${this.endpoint}/tasks`, task, { headers: this.generateHeaders() })
+    .pipe(
+        map(res => res.data as IKanbanTask),
         catchError(error => {
           return throwError(() => new Error(error.error?.message || 'Error del servidor'))
         })
       )
   }
 
-  deleteNote(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.endpoint}/${id}` , { headers: this.generateHeaders() })
-      .pipe(
+  updateColumn(id: number, column: 'new' | 'progress' | 'done') {
+    return this.http.patch<any>(`${this.endpoint}/tasks/${id}/move`, { column }, { headers: this.generateHeaders() })
+    .pipe(
         catchError(error => {
           return throwError(() => new Error(error.error?.message || 'Error del servidor'))
         })

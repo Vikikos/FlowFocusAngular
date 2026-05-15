@@ -1,29 +1,58 @@
 <ul class="nav nav-pills flex-column mb-auto ">
     @if(isLogged){
+        <li class="nav-item">
+        <a 
+            routerLink="" 
+            class="nav-link text-black" 
+            matTooltip="Tu espacio personal"
+            matTooltipPosition="right"
+            [matTooltipShowDelay]="500"
+        >Escritorio</a>
+    </li>
     <li class="nav-item">
-        <a routerLink="/pomodoro" class="nav-link text-black ">
-            Pomodoro
-        </a>
+        <a 
+            routerLink="/pomodoro" 
+            class="nav-link text-black" 
+            matTooltip="Gestión de tiempo: alterna periodos de enfoque y descanso"
+            matTooltipPosition="right"
+            [matTooltipShowDelay]="500"
+        >Pomodoro</a>
     </li>
     <li>
-        <a routerLink="/chronometer" class="nav-link text-black">
-            Cronometro
-        </a>
+        <a 
+        routerLink="/chronometer" 
+        class="nav-link text-black"
+        matTooltip="Mide la duración exacta de tus tareas o actividades"
+        matTooltipPosition="right"
+        [matTooltipShowDelay]="500"
+        >Cronometro</a>
     </li>
     <li>
-        <a routerLink="" class="nav-link text-black">
-            Kanban
-        </a>
+        <a 
+            routerLink="/kanban" 
+            class="nav-link text-black"
+            matTooltip="Organiza tus proyectos visualmente mediante tarjetas y columnas"
+            matTooltipPosition="right"
+            [matTooltipShowDelay]="500"
+        >Kanban</a>
     </li>
     <li>
-        <a routerLink="/notes" class="nav-link text-black">
-            Notas
-        </a>
+        <a 
+            routerLink="/notes" 
+            class="nav-link text-black"
+            matTooltip="Captura ideas rápidas y recordatorios importantes"
+            matTooltipPosition="right"
+            [matTooltipShowDelay]="500"
+        >Notas</a>
     </li>
     <li>
-        <a routerLink="/calendar" class="nav-link text-black">
-            Calendar
-        </a>
+        <a 
+            routerLink="/calendar" 
+            class="nav-link text-black"
+            matTooltip="Planifica tus eventos y visualiza tus fechas clave"
+            matTooltipPosition="right"
+            [matTooltipShowDelay]="500"
+        >Calendar</a>
     </li>
 } @else {
     <li>

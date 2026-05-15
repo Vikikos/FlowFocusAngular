@@ -1,0 +1,22 @@
+<div class="rounded-2 p-4">
+    @if(task$ | async; as task){
+        <div class="mb-4 d-flex flex-row align-items-center justify-content-between">
+            <h1>{{ task.name }}</h1>
+            <button 
+                class="bg-transparent border-0 p-0" 
+                (click)="closeDialog()"
+            >
+                <i class="bi bi-x-circle fs-3" []></i>
+            </button>
+        </div>
+        <div>
+            <div>
+              <div>Columna: {{ columnViewName(task.column) }}</div>  
+              <div>{{ task.expirationDate }}</div> 
+            </div>
+            <p>{{ task.description }}</p>
+        </div>
+    }
+</div>
+
+
