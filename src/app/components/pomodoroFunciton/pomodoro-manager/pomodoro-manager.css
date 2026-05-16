@@ -1,0 +1,43 @@
+.form-group
+{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  input{
+    background: rgba(235, 235, 235, 0.263);
+    border-radius: 5px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.7px);
+    -webkit-backdrop-filter: blur(3.7px);
+    border: 1px solid rgb(255, 255, 255);
+  }
+  label{
+    font-weight: 300;
+    margin-bottom: 5px;
+  }
+}
+
+.manager-container , .pomodro-grid , .pomodoro-item {
+  background: rgba(255, 255, 255, 0.14);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(3.7px);
+-webkit-backdrop-filter: blur(3.7px);
+border: 1px solid rgb(255, 255, 255);
+}
+
+.manager-container , .pomodro-grid{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.pomodoro-item {
+  margin: 20px;
+
+}
+.info{
+  padding: 20px;
+  display: flex;
+  gap: 10px;
+}

@@ -88,7 +88,6 @@ export class PomodoroManager implements OnInit {
    * Borra un registro por ID
    */
   deletePomodoro(id: number): void {
-    if (confirm('¿Estás seguro de que quieres eliminar esta configuración?')) {
       this.pomodoroService.delete(id).subscribe({
         next: () => {
           // Filtramos la lista local para quitar el borrado
@@ -97,7 +96,7 @@ export class PomodoroManager implements OnInit {
         },
         error: (err) => console.error('Error al borrar:', err)
       });
-    }
+
   }
 
   /**

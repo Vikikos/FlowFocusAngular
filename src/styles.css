@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 .bubble-element {
-    background: rgba(255, 255, 255, 0.295);
+    background: rgba(255, 255, 255, 0);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -11,6 +11,9 @@
         inset 0 -5px 15px -3px rgba(0, 0, 0, 0.1);
 }
 body{
-    background-image: url(/img/fondo-perso.png);
+    background-image: url(/img/bg.jpeg);
     background-size: cover;
+}
+*{
+  
 }
