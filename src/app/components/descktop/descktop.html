@@ -6,9 +6,7 @@
             @if (getSpace(space)) {
               <ng-container 
                 *ngComponentOutlet="getSpace(space).component; inputs: getSpace(space).inputs"
-                (empty)="emptySpace(space)"
               >
-           
               </ng-container>
             } @else {
               <button class="btn w-100 h-100" (click)="selectFunction(space)">

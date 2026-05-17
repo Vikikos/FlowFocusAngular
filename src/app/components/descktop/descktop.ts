@@ -43,24 +43,6 @@ export class DescktopComponent {
     this.printDescktopConfig();
   }
 
-  toggleFunction(space: number): void {
-    this.addFunction = true;
-    this.activeSpace = space;
-  }
-
-  functionSelected(func: any): void {
-    console.log(func)
-    this.service.getFunc(func.function, func.id).subscribe((res)=> {
-      console.log(res)
-    })
-    // if (this.activeSpace === 1) this.funcSpace1 = func;
-    // if (this.activeSpace === 2) this.funcSpace2 = func;
-    // if (this.activeSpace === 3) this.funcSpace3 = func;
-
-    // this.addFunction = false;
-    // this.activeSpace = 0;
-  }
-
   selectFunction(position: number) {
     const dialogRef =  this.dialog.open(SelctFunction,{
       width: '400px',
@@ -70,11 +52,14 @@ export class DescktopComponent {
       if(!result.id && result.tasks){
         //es kanban
         (this as any)[`funcSpace${position}`] = {
-          component: COMPONENT_MAP[result.function]
+          component: COMPONENT_MAP[result.function],
+          inputs: { 
+              onEmptyAction: () => this.emptySpace(position)
+            }
         };
 
         const componenteInfo = {
-          component: result.function
+          component: result.function,
         };
         localStorage.setItem(`funcSpace${position}`, JSON.stringify(componenteInfo));
         this.cdr.detectChanges();
@@ -83,12 +68,17 @@ export class DescktopComponent {
         this.service.getFunc(result.function, result.id).subscribe(()=> {
           (this as any)[`funcSpace${position}`] = {
             component: COMPONENT_MAP[result.function],
-            inputs: { id: result.id }
+            inputs: { 
+              id: result.id,
+              onEmptyAction: () => this.emptySpace(position)
+            }
           };
 
           const componenteInfo = {
             component: result.function,
-            inputs: { id: result.id }
+            inputs: { 
+              id: result.id
+            }
           };
           localStorage.setItem(`funcSpace${position}`, JSON.stringify(componenteInfo));
           this.cdr.detectChanges();
@@ -99,9 +89,8 @@ export class DescktopComponent {
   }
 
   emptySpace(space: number) {
-    console.log(space);
     (this as any)[`funcSpace${space}`] = null;
-    localStorage.removeItem(this.getSpace(space));
+    localStorage.removeItem(`funcSpace${space}`);
     this.cdr.detectChanges();
   }
 
@@ -115,11 +104,12 @@ export class DescktopComponent {
     
       if (dataString) {
         const data = JSON.parse(dataString);
-        console.log(`Cargando espacio ${i}:`, data);
-        // Reconstruimos el espacio usando el MAPA de componentes
         (this as any)[`funcSpace${i}`] = {
           component: COMPONENT_MAP[data.component], 
-          inputs: data.inputs ? { id: data.inputs.id } : { }
+          inputs: {
+            ...(data.inputs ? { id: data.inputs.id } : { }),
+            onEmptyAction: () => this.emptySpace(i)
+          }
         };
       }
     }

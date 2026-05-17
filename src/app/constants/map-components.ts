@@ -1,12 +1,12 @@
 import { CardDesktopCalendar } from "../components/calendar/card-desktop-calendar/card-desktop-calendar";
-import { DetailChronometer } from "../components/chronometer/detail-chronometer/detail-chronometer";
+import { CardDesktopChronometer } from "../components/chronometer/card-desktop-chronometer/card-desktop-chronometer";
 import { ProgressColumn } from "../components/kanban/progress-column/progress-column";
-import { CardNote } from "../components/note/card-note/card-note";
+import { CardDesktopNote } from "../components/note/card-desktop-note/card-desktop-note";
 
 export const COMPONENT_MAP: { [key: string]: any } = {
-    marks: CardNote,
+    marks: CardDesktopNote,
     kanban: ProgressColumn,
-    chronometers: DetailChronometer,
+    chronometers: CardDesktopChronometer,
     calendars: CardDesktopCalendar,
     pomodoro: ''
 };

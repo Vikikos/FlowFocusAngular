@@ -133,9 +133,10 @@ export class CardDesktopCalendar {
       });
   }
   
-  @Output() empty: EventEmitter<void> = new EventEmitter<void>();
-  emptySpace() {
-    console.log('si')
-    this.empty.emit();
+  @Input() onEmptyAction?: () => void;
+  notifyClose() {
+    if (this.onEmptyAction) {
+      this.onEmptyAction();
+    }
   }
 }

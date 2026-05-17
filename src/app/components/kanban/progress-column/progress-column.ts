@@ -1,5 +1,5 @@
 import { CdkDrag, CdkDragDrop, CdkDragHandle, CdkDropList, CdkDropListGroup, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, Input } from '@angular/core';
 import { IKanbanTask } from '../interfaces/ikanban-task';
 import { KanbanService } from '../service/kanban-service';
 import { MatDialog } from '@angular/material/dialog';
@@ -25,6 +25,13 @@ export class ProgressColumn {
 
   ngOnInit() {
     this.getTasks();
+  }
+
+  @Input() onEmptyAction?: () => void;
+  notifyClose() {
+    if (this.onEmptyAction) {
+      this.onEmptyAction();
+    }
   }
 
   getTasks() {
