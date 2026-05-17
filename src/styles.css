@@ -32,7 +32,25 @@ body{
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* main{
-  height: 100dvh;
-  overflow: scroll;
-} */
+html, * {
+  scrollbar-color: #afafaf #ffffff25;
+  scrollbar-width: thin; 
+}
+
+::-webkit-scrollbar {
+  width: 6px;  
+  height: 6px; 
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff25; 
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #afafaf; 
+  border-radius: 20px;
+  border: 1px solid #ffffff25; 
+}
+
+

@@ -19,7 +19,7 @@ export class DetailChronometer {
   private modo = signal<string>('count_up');
   private segundosTotales = signal(0);
 
-  @Input() idChoronometer!: number;
+  @Input() id!: number;
   @Output() updated: EventEmitter<void> = new EventEmitter<void>();
 
   chronometer$!: Observable<IChronometer>;
@@ -27,7 +27,7 @@ export class DetailChronometer {
   corriendo = signal(false);
 
   ngOnInit() {
-    this.chronometer$ = this.serviceChronometer.getChronometer(this.idChoronometer)
+    this.chronometer$ = this.serviceChronometer.getChronometer(this.id)
 
     this.chronometer$.subscribe((res) => {
       this.chronometer = res;
@@ -99,7 +99,7 @@ export class DetailChronometer {
 
       if (JSON.stringify(result) !== JSON.stringify(formChronometer)) {
         //que cambie solo si son diferentes , algo ha cambiado
-        this.serviceChronometer.updateChronometer(this.idChoronometer,result).subscribe({
+        this.serviceChronometer.updateChronometer(this.id,result).subscribe({
           next: () => this.updated.emit(),
           error: (error) => console.log(error)
         });

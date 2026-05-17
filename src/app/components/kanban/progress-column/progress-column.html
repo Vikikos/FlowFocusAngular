@@ -1,0 +1,22 @@
+
+    <div class="bubble-element rounded-2 p-3 h-100">
+        <h3 class="border-bottom">En Progreso</h3>
+        <div cdkDropList [cdkDropListData]="progressTasks" (cdkDropListDropped)="drop($event)"
+            class="task-list">
+
+            @for(task of progressTasks; track task.id) {
+            <div class="bubble-element rounded-2 p-2 mb-2 bg-white-blur" cdkDrag>
+                <div class="d-flex flex-row justify-content-between align-items-center">
+                    <a class="nav-link" (click)="showtask(task.id)">
+                        {{ task.name }}
+                    </a>
+                    <button class="btn fs-5 d-none d-md-block p-0" cdkDragHandle>
+                        <i class="bi bi-arrows-move"></i>
+                    </button>
+                </div>
+            </div>
+            } @empty {
+            <div class="p-2 my-3 text-muted border-dashed">Suelte aquí</div>
+            }
+        </div>
+    </div>

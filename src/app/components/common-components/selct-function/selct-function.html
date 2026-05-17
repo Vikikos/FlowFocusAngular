@@ -1,8 +1,33 @@
-<div class="card">
-  <button (click)="sendFunciton('pomodoro')">Pomodoro</button>
-  <button (click)="sendFunciton('kanban')">Kanban</button>
-  <button (click)="sendFunciton('chronometer')">Cronometro</button>
-  <button (click)="sendFunciton('notes')">Notas</button>
-  <button (click)="sendFunciton('calendar')">Calendario</button>
-  <button (click)="sendFunciton('none')">Cancelar</button>
-</div>
+<ul class="menu-list">
+    @for (item of navItems; track item.title) {
+      <li class="menu-item">
+        <!-- Botón principal del menú -->
+         @if (item.subMenu) {
+          <div class="menu-header" (click)="toggleSubMenu(item)">
+            <span>{{ item.title }}</span>
+            @if (item.showSubMenu) {
+              <span class="arrow" [class.open]="item.showSubMenu">▼</span>
+            } @else {
+              flc
+            }
+          </div>
+        } @else {
+          <div class="menu-header" (click)="sendFunciton(item.db_name)">
+            <span>{{ item.title }}</span>
+          </div>
+        }
+
+        <!-- Submenú desplegable -->
+        @if (item.subMenu && item.showSubMenu) {
+          <ul class="submenu-list">
+            @for (sub of (item.subMenu | async); track sub.id) {
+              <li class="submenu-item" (click)="sendFunciton(item.db_name, sub.id)">
+               {{ sub.name }}
+               {{ sub.title }}
+              </li>
+            }
+          </ul>
+        }
+      </li>
+    }
+  </ul>

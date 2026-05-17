@@ -18,7 +18,7 @@
                 </div>
                 @for(note of ((notes$ | async) ?? []) | noteFilter: filterSearch; track note.id) {
                     <div class="col-12 col-md-6 col-xl-4 py-3">
-                        <card-note [idNote]="note.id!" (deleted)="getNotes()"></card-note>
+                        <card-note [id]="note.id!" (deleted)="getNotes()"></card-note>
                     </div>
                 }@empty {
                     <div class="col-12 col-md-6 col-xl-4 py-3">
