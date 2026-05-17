@@ -46,6 +46,8 @@ export class DescktopComponent {
   selectFunction(position: number) {
     const dialogRef =  this.dialog.open(SelctFunction,{
       width: '400px',
+      panelClass: 'custom-dialog-background',
+      backdropClass: 'select-bg',
     });
 
     dialogRef.afterClosed().subscribe(result => {

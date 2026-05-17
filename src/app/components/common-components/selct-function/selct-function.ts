@@ -1,16 +1,13 @@
-import { emitDistinctChangesOnlyDefaultValue } from '@angular/compiler';
-import { Component,Output,EventEmitter, inject,  } from '@angular/core';
+import { Component, inject,  } from '@angular/core';
 import { NoteService } from '../../note/service/note-service';
 import { INote } from '../../note/interfaces/note';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { CalendarService } from '../../calendar/service/calendar-service';
 import { ICalendar } from '../../calendar/interfaces/calendar';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { KanbanService } from '../../kanban/service/kanban-service';
+import { MatDialogRef } from '@angular/material/dialog';
 import { IChronometer } from '../../chronometer/interfaces/chronometer';
 import { ChronometerService } from '../../chronometer/service/chronometer-service';
-import { IKanbanTask } from '../../kanban/interfaces/ikanban-task';
 
 @Component({
   selector: 'selct-function',
@@ -44,7 +41,8 @@ export class SelctFunction {
       { 
         title: 'Pomodoro', 
         db_name: 'pomodoro', 
-        route: '/home' },
+        route: '/home' 
+      },
       {
         title: 'Notas',
         db_name: 'marks',

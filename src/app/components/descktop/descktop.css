@@ -1,4 +1,3 @@
-main{
-  /* background-image: url(/img/bg.jpeg);
-  background-size: cover; */
+.grid-child{
+  height: calc((100dvh - 142px) / 3 );
 }

@@ -1,4 +1,4 @@
-import { CdkDrag, CdkDragDrop, CdkDragHandle, CdkDropList, CdkDropListGroup, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragDrop, CdkDragHandle, CdkDropList, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ChangeDetectorRef, Component, inject, Input } from '@angular/core';
 import { IKanbanTask } from '../interfaces/ikanban-task';
 import { KanbanService } from '../service/kanban-service';
@@ -8,7 +8,6 @@ import { DetailTask } from '../detail-task/detail-task';
 @Component({
   selector: 'progress-column',
   imports: [
-    CdkDropListGroup,
     CdkDropList,
     CdkDrag,
     CdkDragHandle

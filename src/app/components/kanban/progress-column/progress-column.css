@@ -1,8 +1,0 @@
-.bubble-element{
-    max-height: 350px;
-}
-
-.task-list{
-    max-height: 270px;
-    overflow-y: scroll;
-}

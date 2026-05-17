@@ -1,25 +1,24 @@
-<ul class="menu-list">
+<ul class="menu-list p-4 rounded-2">
+  <h2 class="border-bottom pb-1">Tus herramientas</h2>
     @for (item of navItems; track item.title) {
-      <li class="menu-item">
+      <li class="menu-item border-bottom py-2 px-1">
         <!-- Botón principal del menú -->
          @if (item.subMenu) {
           <div class="menu-header" (click)="toggleSubMenu(item)">
-            <span>{{ item.title }}</span>
-            @if (item.showSubMenu) {
-              <span class="arrow" [class.open]="item.showSubMenu">▼</span>
-            } @else {
-              flc
-            }
+            <span class="fw-bold">{{ item.title }}</span>
+            
+            <i class="bi bi-caret-down-fill" [class.bi-caret-up-fill]="item.showSubMenu"></i>
+            
           </div>
         } @else {
           <div class="menu-header" (click)="sendFunciton(item.db_name)">
-            <span>{{ item.title }}</span>
+            <span class="fw-bold">{{ item.title }}</span>
           </div>
         }
 
         <!-- Submenú desplegable -->
         @if (item.subMenu && item.showSubMenu) {
-          <ul class="submenu-list">
+          <ul class="submenu-list ps-3 p-1">
             @for (sub of (item.subMenu | async); track sub.id) {
               <li class="submenu-item" (click)="sendFunciton(item.db_name, sub.id)">
                {{ sub.name }}
