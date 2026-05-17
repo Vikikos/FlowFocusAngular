@@ -18,7 +18,6 @@ export class EditEvent {
   public readonly date = this.data.start.split(' ')[0];
 
   ngOnInit() {
-    console.log(this.data)
       this.startHours = this.data.start.split(' ')[1].substring(0, 5);
       this.endHours = this.data.end.split(' ')[1].substring(0, 5);
       this.formData.patchValue({

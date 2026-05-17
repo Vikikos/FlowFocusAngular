@@ -11,17 +11,17 @@ import { AsyncPipe } from '@angular/common';
   styleUrl: './card-note.css',
 })
 export class CardNote {
-  @Input() idNote!: number;
+  @Input() id!: number;
   private serviceNote = inject(NoteService);
   note$!: Observable<INote>;
 
   @Output() deleted: EventEmitter<void> = new EventEmitter<void>();
 
   ngOnInit() {
-    this.note$ = this.serviceNote.getNote(this.idNote);
+    this.note$ = this.serviceNote.getNote(this.id);
   }
   deleteNote() {
-    this.serviceNote.deleteNote(this.idNote).subscribe({
+    this.serviceNote.deleteNote(this.id).subscribe({
       next: () => this.deleted.emit(),
       error: (error) => console.log(error)
     })

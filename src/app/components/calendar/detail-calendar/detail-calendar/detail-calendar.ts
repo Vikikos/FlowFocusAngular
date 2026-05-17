@@ -82,6 +82,7 @@ export class DetailCalendar {
         hour: '2-digit',
         minute: '2-digit',
       },
+      allDaySlot: false,
       dateClick: (arg) => this.handleDateClick(arg),
       eventClick: (arg) => this.showEvent(arg)
     };

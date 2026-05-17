@@ -10,8 +10,7 @@
                 <h1>{{ calendar()?.name }}</h1>
             </div>
             <div class="row">
-
-                <div class="col-8">
+                <div class="col-12 col-lg-8">
 
                     <div class="bubble-element rounded-2 p-2">
 
@@ -23,7 +22,7 @@
 
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-12 mt-2 mt-lg-0 col-lg-4">
                     @if(events().length > 0) {
                         <detail-event 
                             [idCalendar]="calendar()?.id!" 

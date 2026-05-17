@@ -1,26 +1,22 @@
-import { Component, computed, EventEmitter, inject, Input, Output, signal } from '@angular/core';
+import { Component, computed, inject, Input, signal } from '@angular/core';
 import { ChronometerService } from '../service/chronometer-service';
 import { IChronometer } from '../interfaces/chronometer';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
-import { MatDialog } from '@angular/material/dialog';
-import { EditChronometer } from '../edit-chronometer/edit-chronometer';
 
 @Component({
-  selector: 'detail-chronometer',
+  selector: 'card-desktop-chronometer',
   imports: [AsyncPipe],
-  templateUrl: './detail-chronometer.html',
-  styleUrls: ['./detail-chronometer.css', '../../../../styles.css'],
+  templateUrl: './card-desktop-chronometer.html',
+  styleUrl: './card-desktop-chronometer.css',
 })
-export class DetailChronometer {
+export class CardDesktopChronometer {
   private serviceChronometer = inject(ChronometerService);
-  private dialog: MatDialog = inject(MatDialog);
   private intervalo: any;
   private modo = signal<string>('count_up');
   private segundosTotales = signal(0);
 
   @Input() id!: number;
-  @Output() updated: EventEmitter<void> = new EventEmitter<void>();
 
   chronometer$!: Observable<IChronometer>;
   chronometer!: IChronometer;
@@ -35,6 +31,13 @@ export class DetailChronometer {
       //estado inicial
       this.segundosTotales.set(this.chronometer.duration);
     });
+  }
+
+  @Input() onEmptyAction?: () => void;
+  notifyClose() {
+    if (this.onEmptyAction) {
+      this.onEmptyAction();
+    }
   }
 
   tiempoDisplay = computed(() => {
@@ -83,40 +86,5 @@ export class DetailChronometer {
     return number.toString().padStart(2, '0');
   }
 
-  editChronometer() {
-    const dialogRef = this.dialog.open(EditChronometer, {
-      width: '400px',
-      disableClose: true,
-      data: {...this.chronometer}
-    });
-
-    const formChronometer = {
-      name: this.chronometer.name,
-      duration: this.chronometer.duration,
-      direction: this.chronometer.direction
-    }
-    dialogRef.afterClosed().subscribe(result => {
-
-      if (JSON.stringify(result) !== JSON.stringify(formChronometer)) {
-        //que cambie solo si son diferentes , algo ha cambiado
-        this.serviceChronometer.updateChronometer(this.id,result).subscribe({
-          next: () => this.updated.emit(),
-          error: (error) => console.log(error)
-        });
-      } 
-    });
-  }
-
-  @Output() deleted : EventEmitter<void> = new EventEmitter<void>();
-
-  deleteChronometer() {
-    this.serviceChronometer.deleteChronometer(this.chronometer.id!).subscribe({
-      next: () => this.deleted.emit(),
-      error: (error) => console.log(error)
-    })
-    
-  }
-
   ngOnDestroy() { this.pausar(); }
-
 }
