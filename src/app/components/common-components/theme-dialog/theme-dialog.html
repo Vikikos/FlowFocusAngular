@@ -1,0 +1,17 @@
+<div class="dialog-header">
+  <h4>Configuración de Tema</h4>
+  <button class="close" (click)="close()">×</button>
+</div>
+
+<div class="dialog-body">
+  <div class="theme-preview" [ngClass]="isDark ? 'dark' : 'light'">
+    <i class="bi" [ngClass]="isDark ? 'bi-moon-stars-fill' : 'bi-sun-fill'"></i>
+  </div>
+
+  <span class="theme-label">{{ isDark ? 'Modo Oscuro' : 'Modo Claro' }}</span>
+
+  <button class="btn-theme" (click)="toggleTheme()">
+    <i class="bi me-2" [ngClass]="isDark ? 'bi-sun-fill' : 'bi-moon-stars-fill'"></i>
+    Cambiar a {{ isDark ? 'Claro' : 'Oscuro' }}
+  </button>
+</div>

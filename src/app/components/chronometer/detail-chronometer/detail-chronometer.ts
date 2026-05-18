@@ -21,6 +21,7 @@ export class DetailChronometer {
 
   @Input() idChoronometer!: number;
   @Output() updated: EventEmitter<void> = new EventEmitter<void>();
+  @Output() close = new EventEmitter<void>();
 
   chronometer$!: Observable<IChronometer>;
   chronometer!: IChronometer;
@@ -107,11 +108,11 @@ export class DetailChronometer {
     });
   }
 
-  @Output() deleted : EventEmitter<number> = new EventEmitter<number>();
+  @Output() deleted : EventEmitter<void> = new EventEmitter<void>();
 
   deleteChronometer() {
     this.serviceChronometer.deleteChronometer(this.chronometer.id!).subscribe({
-      next: () => this.deleted.emit(this.chronometer.id),
+      next: () => this.deleted.emit(),
       error: (error) => console.log(error)
     })
     

@@ -1,9 +1,9 @@
-import { Component,OnInit,OnDestroy, Output,EventEmitter, ChangeDetectorRef} from '@angular/core';
+import { Component, OnInit, OnDestroy, inject, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { PomodoroService } from '../services/pomodoroService';
 import { IPomodoro } from '../interfaces/ipomodoro';
-import { interval } from 'rxjs';
 import { AsideMenuComponent } from '../../common-components/aside-menu/aside-menu';
 import { DecimalPipe } from "@angular/common";
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'pomodoro',
   imports: [DecimalPipe, AsideMenuComponent  ],
@@ -11,8 +11,8 @@ import { DecimalPipe } from "@angular/common";
   styleUrl: './pomodoro.css',
 })
 export class Pomodoro implements OnInit, OnDestroy {
-  @Output() close = new EventEmitter<string>();
 
+  @Output() close = new EventEmitter<void>();
 
   setting?: IPomodoro;
   allSettings: IPomodoro[] = [];
@@ -25,29 +25,33 @@ export class Pomodoro implements OnInit, OnDestroy {
   timerInterval:any;
 
   private audio = new Audio();
+  private pomodoroService = inject(PomodoroService);
+  private cdr = inject(ChangeDetectorRef);
+  private settingsSubscription?: Subscription;
 
   protected readonly Math =Math;
 
-  constructor(
-    private pomodoroService: PomodoroService,
-    private cdr: ChangeDetectorRef
-  ) {
+  constructor() {
     this.audio.src = 'sounds/alarma.mp3';
     this.audio.load();
   }
 
   ngOnInit(): void {
-    this.pomodoroService.getSettings().subscribe({
-      next: (data) => {
-        if (data && data.length > 0) {
-          this.allSettings = data; // Guardamos todos
-          this.setting = data[0];  // El primero por defecto
-          this.resetTimer();
-          this.cdr.detectChanges();
+    this.getSettings();
+  }
+
+  getSettings() {
+    this.settingsSubscription = this.pomodoroService.settings$.subscribe(data => {
+      if (data && data.length > 0) {
+        this.allSettings = data;
+        if (!this.setting || !data.find(s => s.id === this.setting!.id)) {
+          this.setting = data[0];
         }
-      },
-      error: (err) => console.error('Error:', err)
+        this.resetTimer();
+        this.cdr.detectChanges();
+      }
     });
+    this.pomodoroService.getSettings();
   }
 
   resetTimer(): void {
@@ -83,7 +87,7 @@ export class Pomodoro implements OnInit, OnDestroy {
   }
 
   private playSound(): void {
-    this.audio.currentTime = 0; // Reinicia el audio si ya estaba sonando
+    this.audio.currentTime = 0;
     this.audio.play().catch(err => console.error("Error al sonar:", err));
   }
 
@@ -134,7 +138,7 @@ saveSettings(newWork: string, newBreak: string, newSessions: string): void {
   this.pomodoroService.updateSettings(this.setting.id, dataToSend).subscribe({
     next: (response) => {
 
-      this.setting = { ...dataToSend, ...response };
+      this.setting = response.data;
 
       this.isEditing = false;
       this.isWorking = true;
@@ -164,12 +168,12 @@ selectPomodoro(item: IPomodoro): void {
 
   ngOnDestroy():void{
     this.stop();
+    this.settingsSubscription?.unsubscribe();
   }
   isClosing = false;
 
   sendClose(): void {
     this.isClosing = true;
-
 
     setTimeout(() => {
       this.stop();

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
 import { IChronometer } from '../interfaces/chronometer';
 
 @Injectable({
@@ -10,16 +10,34 @@ export class ChronometerService {
   private http = inject(HttpClient);
   private endpoint = 'http://flowfocus.test/api/chronometers';
 
-  getChronometers(): Observable<IChronometer[]> {
+  private chronometersSubject = new BehaviorSubject<IChronometer[]>([]);
+  chronometers$ = this.chronometersSubject.asObservable();
+
+  getChronometers() {
     const headers = this.generateHeaders();
-    return this.http.get<any>(this.endpoint,{headers})
-    .pipe(
-      map(res => res.data as IChronometer[]),
-      catchError(error => {
-        return throwError(() => new Error(error.error?.message || 'Error del servidor'))
-      })
-    )
+    this.http.get<any>(this.endpoint,{headers})
+    .subscribe({
+      next: (result) => {
+        this.chronometersSubject.next(result.data);
+      },
+      error: () => {
+        catchError(error => {
+          return throwError(() => new Error(error.error?.message || 'Error del servidor'))
+        })
+      }
+    })
   }
+
+  // getChronometers(): Observable<IChronometer[]> {
+  //   const headers = this.generateHeaders();
+  //   return this.http.get<any>(this.endpoint,{headers})
+  //   .pipe(
+  //     map(res => res.data as IChronometer[]),
+  //     catchError(error => {
+  //       return throwError(() => new Error(error.error?.message || 'Error del servidor'))
+  //     })
+  //   )
+  // }
 
   getChronometer(id: number): Observable<IChronometer> {
     const headers = this.generateHeaders();

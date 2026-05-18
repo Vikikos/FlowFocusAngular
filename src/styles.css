@@ -1,6 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  @include mat.dialog-overrides((
+    container-color: orange,
+    subhead-color: red,
+  ));
+}
 .bubble-element {
-    background: rgba(255, 255, 255, 0);
+    background: rgba(182, 182, 182, 0);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -14,6 +19,166 @@ body{
     background-image: url(/img/bg.jpeg);
     background-size: cover;
 }
-*{
-  
+
+body.dark-theme {
+    background-image: url(/img/bgb.jpeg);
+    background-size: cover;
+    color: #f0f0f0;
 }
+
+body.dark-theme .text-black,
+body.dark-theme .text-dark {
+    color: #f0f0f0 !important;
+}
+
+body.dark-theme h1, body.dark-theme h2, body.dark-theme h3,
+body.dark-theme h4, body.dark-theme h5, body.dark-theme h6,
+body.dark-theme p, body.dark-theme label, body.dark-theme strong,
+body.dark-theme .nav-link, body.dark-theme .dropdown-item,
+body.dark-theme .dropdown-toggle, body.dark-theme .navbar-brand,
+body.dark-theme a:not(.btn):not(.dropdown-item),
+body.dark-theme .bi,
+body.dark-theme .card,
+body.dark-theme .card-body {
+    color: #f0f0f0;
+}
+
+body.dark-theme .bubble-element {
+    background: rgba(15, 15, 25, 0.6) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+body.dark-theme .btn-close {
+    filter: invert(1);
+}
+
+/* ===== DARK MODE: Pomodoro & Pomodoro Manager ===== */
+body.dark-theme .pomodoro-container,
+body.dark-theme .pomodoro-container *,
+body.dark-theme .manager-container,
+body.dark-theme .manager-container * {
+    color: #f0f0f0 !important;
+}
+
+body.dark-theme .add-form input::placeholder {
+    color: rgba(240, 240, 240, 0.5) !important;
+}
+
+body.dark-theme .btn-delete:hover {
+    color: #e74c3c !important;
+}
+
+/* ===== DARK MODE: Theme Dialog ===== */
+body.dark-theme .theme-dialog-panel .dialog-header h4,
+body.dark-theme .theme-dialog-panel .theme-label,
+body.dark-theme .theme-dialog-panel .close,
+body.dark-theme .theme-dialog-panel .btn-theme {
+    color: #f0f0f0;
+}
+
+/* ===== DARK MODE: FullCalendar ===== */
+body.dark-theme .fc .fc-daygrid-day-number,
+body.dark-theme .fc .fc-col-header-cell-cushion {
+    color: #f0f0f0 !important;
+}
+
+body.dark-theme .fc .fc-day-today {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* ===== DARK MODE: Kanban ===== */
+body.dark-theme .bg-white-blur {
+    background-color: rgba(15, 15, 25, 0.6);
+}
+
+/* ===== DARK MODE: Profile ===== */
+body.dark-theme .banner-container {
+    background-color: rgba(15, 15, 25, 0.4);
+}
+
+/* ===== DARK MODE: Buttons and inputs general ===== */
+body.dark-theme input,
+body.dark-theme textarea,
+body.dark-theme select {
+    color: #f0f0f0;
+}
+
+body.dark-theme input::placeholder,
+body.dark-theme textarea::placeholder {
+    color: rgba(240, 240, 240, 0.5);
+}
+
+/* ===== DARK MODE: Bootstrap text utilities ===== */
+body.dark-theme .text-muted {
+    color: rgba(240, 240, 240, 0.6) !important;
+}
+
+body.dark-theme .text-primary {
+    color: #6ea8fe !important;
+}
+
+body.dark-theme .text-secondary {
+    color: rgba(240, 240, 240, 0.7) !important;
+}
+
+body.dark-theme .text-body {
+    color: #f0f0f0 !important;
+}
+
+body.dark-theme .text-danger {
+    color: #f08080 !important;
+}
+
+/* ===== DARK MODE: Form elements ===== */
+body.dark-theme .form-label {
+    color: #f0f0f0;
+}
+
+body.dark-theme .form-control,
+body.dark-theme .form-select {
+    background: rgba(235, 235, 235, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #f0f0f0;
+}
+
+body.dark-theme .form-control::placeholder {
+    color: rgba(240, 240, 240, 0.5);
+}
+
+body.dark-theme .form-text {
+    color: rgba(240, 240, 240, 0.7);
+}
+
+/* ===== DARK MODE: Dropdown menu ===== */
+body.dark-theme .dropdown-menu {
+    background: rgba(15, 15, 25, 0.6) !important;
+    border-color: rgba(255, 255, 255, 0.12) !important;
+    backdrop-filter: blur(3.7px);
+}
+
+body.dark-theme .dropdown-item:hover,
+body.dark-theme .dropdown-item:focus {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== DARK MODE: Border adjustments ===== */
+body.dark-theme .border-dashed {
+    border-color: rgba(240, 240, 240, 0.3) !important;
+}
+
+.mat-mdc-tooltip .mdc-tooltip__surface {
+  background-color: rgba(33, 37, 41, 0.9) !important; /* Un gris muy oscuro casi negro */
+  backdrop-filter: blur(4px); /* Efecto cristal */
+  color: #ffffff !important;
+  border-radius: 5px !important;
+  padding: 8px 12px !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* main{
+  height: 100dvh;
+  overflow: scroll;
+} */

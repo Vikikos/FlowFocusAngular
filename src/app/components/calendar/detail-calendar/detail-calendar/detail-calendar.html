@@ -1,0 +1,45 @@
+
+        <div >
+            <a routerLink="/calendar" class="nav-link text-primary">
+                <i class="bi bi-arrow-90deg-left"></i>
+                Volver
+            </a>
+        </div>
+        @if(calendar()){
+            <div>
+                <h1>{{ calendar()?.name }}</h1>
+            </div>
+            <div class="row">
+
+                <div class="col-8">
+
+                    <div class="bubble-element rounded-2 p-2">
+
+                        @if(calendarOptions){
+                        <full-calendar [options]="calendarOptions" [events]="events()"></full-calendar>
+                        } @else {
+                        <div>Cargando calendario...</div>
+                        }
+
+                    </div>
+                </div>
+                <div class="col-4">
+                    @if(events().length > 0) {
+                        <detail-event 
+                            [idCalendar]="calendar()?.id!" 
+                            [idEvent]="idEvent()"
+                            (updated)="getEvents()"
+                            (deleted)="getEvents()"
+                        ></detail-event>
+                    } @else {
+                        <div class="bubble-element rounded-2 p-4">
+                            No hay eventos, haga click en un dia para añadir un nuevo evento
+                        </div>
+                    }
+                    
+                </div>
+
+            </div>
+        } @else {
+            <div>Cargando calendario...</div>
+        }

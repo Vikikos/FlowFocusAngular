@@ -1,2 +1,12 @@
-<header-component></header-component>
-<router-outlet></router-outlet>
+<div class="d-flex flex-column vh-100 overflow-hidden">
+    <header-component (logout)="login()"></header-component> 
+    
+    <div class="d-flex flex-row flex-grow-1 overflow-hidden">
+        @if(isLogged) {
+            <aside-menu-component></aside-menu-component>
+        }
+        <main class="w-100 p-3 p-lg-5 overflow-y-auto">
+            <router-outlet></router-outlet>
+        </main>
+    </div>
+</div>

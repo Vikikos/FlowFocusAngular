@@ -55,6 +55,42 @@ export const routes: Routes = [
         title: 'Chronometer'
     },
     {
+        path: 'calendar',
+        canActivate: [isLoggedGuard],
+        loadComponent: () =>
+            import('./components/calendar/calendar')
+            .then(m => m.Calendar)
+        ,
+        title: 'Calendar'
+    },
+    {
+        path: 'calendar/:id',
+        canActivate: [isLoggedGuard],
+        loadComponent: () =>
+            import('./components/calendar/detail-calendar/detail-calendar/detail-calendar')
+            .then(m => m.DetailCalendar)
+        ,
+        title: 'Calendar'
+    },
+    {
+        path: 'notes',
+        canActivate: [isLoggedGuard],
+        loadComponent: () =>
+            import('./components/note/note')
+            .then(m => m.Note)
+        ,
+        title: 'Note'
+    },
+    {
+        path: 'kanban',
+        canActivate: [isLoggedGuard],
+        loadComponent: () =>
+            import('./components/kanban/kanban')
+            .then(m => m.Kanban)
+        ,
+        title: 'Kanban'
+    },
+    {
         path: '**',
         loadComponent: () =>
             import('./components/error404/error404')

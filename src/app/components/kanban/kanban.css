@@ -1,0 +1,12 @@
+.bg-white-blur{
+    background-color: rgba(205, 205, 205, 0.548);
+}
+
+.border-dashed{
+    border: 1px dashed #575757;
+}
+
+.task-list{
+    box-sizing: border-box;
+    height: calc(100% - 32px - 8px);
+}

@@ -1,0 +1,24 @@
+
+        <div class="container">
+            <div class="row">
+            <div class="col-12 col-lg-6">
+                @if(calendars$ | async; as calendars){
+                    @for(calendar of calendars; track $index){
+                        <card-calendar 
+                            [idCalendar]="calendar.id!"
+                            (deleted)="getCalendars()"
+                            (updated)="getCalendars()"
+                        ></card-calendar>
+                    } @empty {
+                        <div>No tienes Calendarios</div>
+                    }
+                } @else {
+                    <div>Cargando Calendarios</div>
+                }
+            </div>
+            <div class="col-12 col-lg-6">
+                <add-calendar (added)="addCalendar()"></add-calendar>
+            </div>
+        </div>
+        </div>
+

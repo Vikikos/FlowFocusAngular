@@ -1,4 +1,16 @@
-main{
-  /* background-image: url(/img/bg.jpeg);
-  background-size: cover; */
+:host {
+    display: block;
+    height: 100%;
+}
+
+.container {
+    height: 100%;
+}
+
+.row {
+    height: 100%;
+}
+
+.row > div {
+    min-width: 0;
 }
