@@ -88,6 +88,7 @@ main{
   margin-top:40px ;
   display: flex;
   flex-direction: column;
+  padding: 30px;
   gap: 10px;
   h3{
     font-size: 35px;
