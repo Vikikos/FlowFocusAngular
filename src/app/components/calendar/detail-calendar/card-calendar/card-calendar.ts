@@ -56,8 +56,7 @@ export class CardCalendar {
 
     dialogRef.afterClosed().subscribe(result => {
       if (!result) return;
-      console.log(result)
-      console.log(formCalendar)
+
       if (JSON.stringify(result) !== JSON.stringify(formCalendar)) {
         this.calendarService.updateCalendar(this.idCalendar, result).subscribe({
           next: () => this.deleted.emit(),

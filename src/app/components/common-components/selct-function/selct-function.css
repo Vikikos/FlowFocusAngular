@@ -33,6 +33,30 @@
 
 }
 
+ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+:host .mat-mdc-dialog-surface {
+  /* cambia el color de fondo del modal */
+  background: rgba(182, 182, 182, 0) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.1),
+        inset 0 5px 15px -3px rgba(255, 255, 255, 0.7),
+        inset 0 -5px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.custom-dialog-background .mat-mdc-dialog-container .mdc-dialog__surface {
+  background-color: #110d0d !important; /* El color de fondo que desees */
+  color: #ffffff; /* Opcional: cambia el color del texto si tu fondo es oscuro */
+}
+
 
 
 @keyframes entradaSuave {

@@ -32,7 +32,6 @@ export class AddChronometer {
 
     this.chronometerService.addChronometer(formValue).subscribe({
       next: () =>{
-        console.log('Se ha guardado Correctamente')
         this.added.emit();
       },
       error: err => console.error('Error fatal:', err),

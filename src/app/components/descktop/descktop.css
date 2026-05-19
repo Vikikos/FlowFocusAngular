@@ -1,16 +1,3 @@
-:host {
-    display: block;
-    height: 100%;
-}
-
-.container {
-    height: 100%;
-}
-
-.row {
-    height: 100%;
-}
-
-.row > div {
-    min-width: 0;
+.grid-child{
+  height: calc((100dvh - 142px) / 3 );
 }

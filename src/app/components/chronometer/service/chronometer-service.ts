@@ -28,17 +28,6 @@ export class ChronometerService {
     })
   }
 
-  // getChronometers(): Observable<IChronometer[]> {
-  //   const headers = this.generateHeaders();
-  //   return this.http.get<any>(this.endpoint,{headers})
-  //   .pipe(
-  //     map(res => res.data as IChronometer[]),
-  //     catchError(error => {
-  //       return throwError(() => new Error(error.error?.message || 'Error del servidor'))
-  //     })
-  //   )
-  // }
-
   getChronometer(id: number): Observable<IChronometer> {
     const headers = this.generateHeaders();
     return this.http.get<any>(`${this.endpoint}/${id}`,{headers})
